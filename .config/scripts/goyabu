@@ -1,0 +1,54 @@
+#!/usr/bin/env bash
+
+# Script pra encontrar rss de filmes que vão ser lançados
+
+link="$1"
+
+program="/usr/bin/mpv"
+
+site(){
+r=$(wget -qO- "https://goyabu.com/" \
+	| sed "s/data-name=/\n/g" \
+	| sed -n "/https:\/\/goyabu.com\/videos/p" \
+	| sed "s/> <span class=\"clip\">.*$// ; s/^.* title=// ; s/\"\".*$// ; s/href=/\n/ ; s/\"//g ; s/&#[0-9][0-9][0-9][0-9]; //g" \
+	| sed "N;s!\n!|!g"
+)
+
+n=$(echo "$r" | wc -l)
+
+IFS=$'\n'
+
+echo "$r" \
+	| awk -v N=1 \
+		-v NU="$(tput bold)$(tput setaf 5)" \
+		-v NA="$(tput bold)$(tput setaf 3)" \
+		-F '|' \
+		'{print NU N ") " NA $1 NO; N++}'
+
+read -p "$(tput bold)$(tput setaf 4)>> Episódio: $(tput bold)$(tput setaf 2)" selection
+
+for episodio in $selection ; do
+ 	# check if ID is valid and in range of results, download torrent
+ 	if [ $episodio -ge 1 ] ; then
+		anime_link=$(echo "$r" | awk -F '|' 'NR=='$episodio'{print $2}')
+		final_link=$(wget -qO- "$anime_link" \
+			| grep "file: \"" \
+			| sed "s/\"}.*$// ; s/^.*file: \"//"
+		)
+	$program "$final_link"
+		fi
+done
+}
+
+if [ -z "$link" ] ; then
+    site
+else
+	final_link=$(wget -qO- "$link" \
+		| grep "file: \"" \
+		| sed "s/\"}.*$// ; s/^.*file: \"//"
+	)
+
+	$program "$final_link"
+fi
+
+

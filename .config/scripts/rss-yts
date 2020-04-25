@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+# Script pra encontrar rss de filmes que vão ser lançados
+
+link1='https://yts.lt/rss/'
+link2=$(echo "$*" | tr ' ' '%')
+link3='/all/all/0'
+
+if [ -z "$link2" ] ; then
+    search="0"
+else
+    search="$link2"
+fi
+
+final_link=${link1}${search}${link3}
+
+r=$(wget -qO- "$final_link" \
+    | sed '/<title><\!\[CDATA\[/!d;s/^.*<!\[CDATA\[//;s/\]\]><\/title>.*$//'
+    )
+
+echo ""
+echo "$(tput bold)$(tput setaf 2)${final_link}"
+echo ""
+echo "$(tput bold)$(tput setaf 3)${r}"

@@ -1,0 +1,73 @@
+tasks:
+# Remove torrent depois de Upar o dobro!
+  clean-transmission:
+    disable: [seen, seen_info_hash]
+    accept_all: yes
+    from_transmission:
+      only_complete: yes
+    if:
+      - transmission_ratio < 1.0: reject
+    transmission:
+      action: remove
+# RSS
+  Mangas:
+    accept_all: yes
+    sequence:
+      - rss: http://fanfox.net/rss/kanojo_okarishimasu.xml
+      - rss: http://fanfox.net/rss/domestic_na_kanojo.xml
+      - rss: http://fanfox.net/rss/enen_no_shouboutai.xml
+      - rss: http://fanfox.net/rss/boku_no_hero_academia.xml
+      - rss: http://fanfox.net/rss/gleipnir.xml
+      - rss: http://fanfox.net/rss/jagaaaaaan.xml
+      - rss: http://fanfox.net/rss/black_clover.xml
+      - rss: http://fanfox.net/rss/parallel_paradise.xml
+      - rss: http://fanfox.net/rss/a_story_about_treating_a_female_knight_who_has_never_been_treated_as_a_woman_as_a_woman.xml
+    exec: gallery-dl "{{url}}" && echo " | $(date '+%d/%m/%Y %H:%M:%S') | {{title}} | Downloaded" >> ~/Downloaded\ Mangas\ History.md || echo " | $(date '+%d/%m/%Y %H:%M:%S') | {{url}} | failed" >> ~/Downloaded\ Mangas\ History.md
+  Animes:
+    sequence:
+      - rss: https://nyaa.si/?page=rss&q=black+clover&c=1_2&f=2
+      - rss: https://nyaa.si/?page=rss&q=Tower+of+God&c=1_2&f=2
+    regexp:
+      accept:
+        - \[720p\]
+    transmission:
+      host: localhost
+      port: 9091
+      username: ""
+      password: ""
+      path: /media/Stronger/Plex/Series/Animes
+  Filmes:
+    sequence:
+      - rss: https://yts.lt/rss/SOUL/all/all/0
+      - rss: https://yts.lt/rss/Bad%Boys%For%Life/all/all/0
+      - rss: https://yts.lt/rss/F9/all/all/0
+      - rss: https://yts.lt/rss/Black%Widow/all/all/0
+      - rss: https://yts.lt/rss/SOUL/all/all/0
+      - rss: https://yts.lt/rss/Wonder%Woman%1984/all/all/0
+    regexp:
+      accept:
+        - 1080p BluRay|WEB
+      reject:
+        - 3D|720p
+    transmission:
+      host: localhost
+      port: 9091
+      username: ""
+      password: ""
+      path: /media/Stronger/Plex/Filmes
+  Series:
+    sequence:
+      - rss: https://showrss.info/show/651.rss
+      - rss: https://showrss.info/show/1296.rss
+      - rss: https://showrss.info/show/1283.rss
+    regexp:
+      accept:
+        - 1080p
+      reject:
+        - Repack|PROPER
+    transmission:
+      host: localhost
+      port: 9091
+      username: ""
+      password: ""
+      path: /media/Stronger/Plex/Series

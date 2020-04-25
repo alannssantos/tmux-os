@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+link="https://corona-stats.online"
+
+r=$(wget -qO- "$link" \
+	| sed '/Brazil/!d;s/│/\n/g;s/ //g;s/║//g' \
+	| sed '1s/^/\(Rank: /;3s/^/\) 😷 /;5s/^/ 💀 /;7s/^/ 😄 /' \
+	| sed '/ /!d' \
+	| sed ':a;$!N;s/\n//;ta;'
+)
+
+echo "$r"
