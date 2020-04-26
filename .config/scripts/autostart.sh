@@ -28,4 +28,4 @@
 # qbittorrent &
 
 #### Calibre Server
-# calibre-server --url-prefix "/home/alann/Biblioteca do calibre/KCC/" --port 57770 &
+# calibre-server --url-prefix "~/Biblioteca do calibre/" --port 57770 &
