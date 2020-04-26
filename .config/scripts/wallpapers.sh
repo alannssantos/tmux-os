@@ -34,13 +34,13 @@ mkdir -p $temp_wall_dir
 cd $temp_wall_dir
 
 # get links of images and download it
-get_random_url=$(lynx -listonly -nonumbers -dump "https://wallhaven.cc/search?categories=010&purity=100&atleast=1920x1080&ratios=16x9&sorting=random&order=desc" | grep '/w/')
+get_random_url=$(lynx -listonly -nonumbers -dump "https://wallhaven.cc/search?q=id%3A711&categories=010&purity=100&atleast=1920x1080&ratios=16x9&sorting=random&order=desc" | grep '/w/')
 get_images_url=$(echo "$get_random_url" | while read line; do lynx -source "$line" | grep -Po '<img id="wallpaper" src="\K[^"]+' ; done )
 dl_images=$(echo "$get_images_url" | while read line; do wget -N "$line" ; done)
 
 # delete any file under 200k in size (to avoid shitty thumnbails or crap quality)
-find . -type f -iname "*.jp*g" -size -200k -exec rm {} \;
-find . -type f -iname "*.png" -size -200k -exec rm {} \;
+find . -type f -iname "*.jp*g" -size -900k -exec rm {} \;
+find . -type f -iname "*.png" -size -900k -exec rm {} \;
 
 # change the downloaded wallpaper metadata (modified date to todays date)
 #  this makes it easy to see which files are older to delete later on
