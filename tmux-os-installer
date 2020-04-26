@@ -103,9 +103,8 @@ case "$Resposta" in
 		pop-icon-theme \
 		pop-gtk-theme \
 		blueman \
-		python3-libtorrent \
-		transmission-daemon \
-		transmission-remote-cli \
+		tmux \
+		ranger \
 		software-properties-gtk -y && \
 #
 	sudo apt update && \
