@@ -16,10 +16,10 @@
 # compton &
 
 #### Selecionando um papel de parede com feh da pasta Backgrounds do sistema.
-while :; do
-	feh --bg-fill --randomize ~/.config/Wallpapers/* \
-	&& sleep 120
-done &
+# while :; do
+#	feh --bg-fill --randomize ~/.config/Wallpapers/* \
+#	&& sleep 120
+# done &
 
 #### Temperatura da tela
 # redshift -l -6.265936:-35.210228 &
@@ -27,3 +27,5 @@ done &
 #### Iniciar Qbittorrent
 # qbittorrent &
 
+#### Calibre Server
+# calibre-server --url-prefix "/home/alann/Biblioteca do calibre/KCC/" --port 57770 &
