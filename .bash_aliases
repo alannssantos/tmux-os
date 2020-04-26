@@ -73,6 +73,12 @@ finder() {
 ranger --selectfile="$(fzf -e | xargs -r -0)"
 }
 
+fzf-dmenu() { 
+# note: xdg-open has a bug with .desktop files, so we cant use that shit
+    selected="$(ls /usr/share/applications | fzf -e)"
+        nohup `grep '^Exec' "/usr/share/applications/$selected" | tail -1 | sed 's/^Exec=//' | sed 's/%.//'` >/dev/null 2>&1&
+}
+
 bind '"\C-F":"finder\n"'
 bind '"\C-X":"tmux attach || tmux\n"'
 bind '"\C-A":"mounty\n"'
