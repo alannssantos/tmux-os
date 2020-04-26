@@ -64,7 +64,7 @@ case "$Resposta" in
 		curl \
 		slop \
 		lynx \
-		feh \
+		sxiv \
 		redshift \
 		rofi \
 		aptitude \
@@ -74,16 +74,7 @@ case "$Resposta" in
 		atool \
 		python3-pip \
 		mpg123 \
-		qbittorrent \
-		xfce4-genmon-plugin \
-		xfce4-datetime-plugin \
-		xfce4-whiskermenu-plugin \
-		dockbarx \
-		xfce4-dockbarx-plugin \
-		update-notifier \
 		pavucontrol \
-		smplayer \
-		xdotool \
 		firefox \
 		vim \
 		zathura \
@@ -106,6 +97,16 @@ case "$Resposta" in
 		blueman \
 		tmux \
 		ranger \
+		qbittorrent \
+		smplayer \
+		xdotool \
+		xfce4-genmon-plugin \
+		xfce4-datetime-plugin \
+		xfce4-whiskermenu-plugin \
+		dockbarx \
+		xfce4-dockbarx-plugin \
+		update-notifier \
+
 		software-properties-gtk -y && \
 #
 	sudo apt update && \
