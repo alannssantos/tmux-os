@@ -75,6 +75,7 @@ case "$Resposta" in
 		python3-pip \
 		mpg123 \
 		qbittorrent \
+		xfce4-genmon-plugin \
 		xfce4-datetime-plugin \
 		xfce4-whiskermenu-plugin \
 		dockbarx \
