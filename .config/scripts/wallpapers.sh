@@ -23,7 +23,7 @@
 
 
 # Variable (you can change any of these to your liking)
-real_wall_dir=~/.config/Wallpapers
+real_wall_dir=~/.config/wallpapers
 temp_wall_dir=/tmp/wallpaper_wallhaven
 expire_wall_date=7
 
