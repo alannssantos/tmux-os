@@ -4,4 +4,4 @@
 
 Lembrar de colocar no atalho de teclado.
 
-`xfce4-terminal --drop-down --hide-menubar --hide-toolbar`
+`xfce4-terminal --drop-down --hide-menubar --hide-toolbar -e tmux`
