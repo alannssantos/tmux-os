@@ -33,5 +33,5 @@ BackgroundDarkness=0,960000
 ScrollingBar=TERMINAL_SCROLLBAR_NONE
 DropdownAlwaysShowTabs=FALSE
 DropdownWidth=100
-DropdownHeight=100
+DropdownHeight=90
 
