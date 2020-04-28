@@ -4,6 +4,6 @@ link="https://dolarhoje.com"
 
 dollar=$(wget -qO- "$link" \
 	| grep "value=\"" \
-	| sed "s/^.*value=\"// ; s/\"\/><.*$// ; s/^/💸 /")
+	| sed "s/^.*value=\"//;s/\"\/><.*$//;s/^/ ┃ 💸 /")
 
 echo "$dollar"

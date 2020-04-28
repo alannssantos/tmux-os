@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+update=$(aptitude show ~U | sed '/Pacote:/!d' | wc -l)
+
+[ -z "$update" ] && echo " ┃  Updates: 0" || echo " ┃  Updates: $update"
