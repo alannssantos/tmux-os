@@ -96,7 +96,6 @@ case "$Resposta" in
 		blueman \
 		tmux \
 		ranger \
-		qbittorrent \
 		smplayer \
 		xdotool \
 		xfce4-genmon-plugin \
@@ -104,9 +103,7 @@ case "$Resposta" in
 		xfce4-whiskermenu-plugin \
 		dockbarx \
 		xfce4-dockbarx-plugin \
-		update-notifier \
-
-		software-properties-gtk -y && \
+		update-notifier -y && \
 #
 	sudo apt update && \
 	sudo apt upgrade -y && \
@@ -114,7 +111,7 @@ case "$Resposta" in
 	sudo -H pip3 install youtube-dl --upgrade && \
 	sudo -H pip3 install subliminal --upgrade && \
         sudo -H pip3 install flexget==3.1.50 && \
-	pip3 install qbittorrentui && \
+	pip3 install transmissionrpc && \
 	pip3 install gallery-dl && \
 	pip3 install ueberzug && \
 	echo -e "$BCor\n02.Sistema!$ECor" && \
