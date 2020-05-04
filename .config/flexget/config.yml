@@ -22,14 +22,13 @@ tasks:
       - rss: http://fanfox.net/rss/black_clover.xml
       - rss: http://fanfox.net/rss/parallel_paradise.xml
       - rss: http://fanfox.net/rss/a_story_about_treating_a_female_knight_who_has_never_been_treated_as_a_woman_as_a_woman.xml
-    exec: gallery-dl "{{url}}" && echo " | $(date '+%d/%m/%Y %H:%M:%S') | {{title}} | Downloaded" >> ~/Downloaded\ Mangas\ History.md || echo " | $(date '+%d/%m/%Y %H:%M:%S') | {{url}} | failed" >> ~/Downloaded\ Mangas\ History.md
+    exec: echo " | $(date '+%d/%m/%Y %H:%M:%S') | {{title}} | {{url}} |" >> ~/Update\ Mangas\ History.md
   Animes:
     sequence:
-      - rss: https://nyaa.si/?page=rss&q=black+clover&c=1_2&f=2
       - rss: https://nyaa.si/?page=rss&q=Tower+of+God&c=1_2&f=2
     regexp:
       accept:
-        - \[720p\]
+        - (\[HorribleSubs\]|\[720p\]).*(\[HorribleSubs\]|\[720p\])
     transmission:
       host: localhost
       port: 9091
@@ -46,9 +45,9 @@ tasks:
       - rss: https://yts.lt/rss/Wonder%Woman%1984/all/all/0
     regexp:
       accept:
-        - 1080p BluRay|WEB
+        - (BluRay|WEB|1080p).*(BluRay|WEB|1080p)
       reject:
-        - 3D|720p
+        - (3D|720p)
     transmission:
       host: localhost
       port: 9091
@@ -62,9 +61,9 @@ tasks:
       - rss: https://showrss.info/show/1283.rss
     regexp:
       accept:
-        - 1080p
+        - (1080p)
       reject:
-        - Repack|PROPER
+        - (Repack|PROPER)
     transmission:
       host: localhost
       port: 9091
