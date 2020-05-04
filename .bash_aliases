@@ -74,9 +74,9 @@ ranger --selectfile="$(fzf -e | xargs -r -0)"
 }
 
 fzf-dmenu() {
-    Name=$(sed '/^Name=/!d' /usr/share/applications/*.desktop | sed 's/^Name\=//' > /tmp/Name)
-    Exec=$(sed '/^Exec=/!d' /usr/share/applications/*.desktop > /tmp/Exec)
-        selected="$(paste -d '\n' /tmp/Name /tmp/Exec | sed 'N;s/\nExec\=/ -- /' | fzf -e | sed 's/^.*-- //' | sed 's/%.//')"
+    Name=$(sed '/^Name=/!d' /usr/share/applications/*.desktop | sed 's/^Name\=//' > /tmp/tmp.Name)
+    Exec=$(sed '/^Exec=/!d' /usr/share/applications/*.desktop > /tmp/tmp.Exec)
+        selected="$(paste -d '\n' /tmp/tmp.Name /tmp/tmp.Exec | sed 'N;s/\nExec\=/ -- /' | fzf -e | sed 's/^.*-- //' | sed 's/%.//')"
         nohup $selected >/dev/null 2>&1&
 }
 
