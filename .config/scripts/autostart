@@ -15,17 +15,11 @@
 #### Compositor para trazer transparencia a algumas janelas.
 # compton &
 
-#### Selecionando um papel de parede com feh da pasta Backgrounds do sistema.
-# while :; do
-#	feh --bg-fill --randomize ~/.config/Wallpapers/* \
-#	&& sleep 120
-# done &
-
 #### Temperatura da tela
 # redshift -l -6.265936:-35.210228 &
 
-#### Iniciar Qbittorrent
-# qbittorrent &
+#### Iniciar Transmission
+# transmission-gtk -m &
 
 #### Calibre Server
 # calibre-server --url-prefix "~/Biblioteca do calibre/" --port 57770 &

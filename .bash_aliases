@@ -43,6 +43,7 @@ alias youtube-dl='youtube-dl -c --add-metadata'
 alias tfilmes='transmission-remote -a -w /media/Stronger/Plex/Filmes'
 alias tseries='transmission-remote -a -w /media/Stronger/Plex/Series'
 alias tanimes='transmission-remote -a -w /media/Stronger/Plex/Series/Animes'
+alias trc='~/.config/tremc/tremc'
 
 #### Exports
 export EDITOR="vim"

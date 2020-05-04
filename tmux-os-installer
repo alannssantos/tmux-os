@@ -102,6 +102,7 @@ case "$Resposta" in
 		xfce4-datetime-plugin \
 		xfce4-whiskermenu-plugin \
 		dockbarx \
+		python3-libtorrent \
 		xfce4-dockbarx-plugin \
 		update-notifier -y && \
 #

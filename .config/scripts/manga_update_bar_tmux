@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+file=~/Update\ Mangas\ History.md
+date=$(date '+%d/%m/%Y')
+
+
+[ ! -f "$file" ] \
+	&& echo -e " | Data | Titulo | Url |\n |:-----------:|:-----------:|:--------:|" >> "$file"
+ 
+NManga=$(grep "$date" "$file" | wc -l)
+
+echo " ┃ Manga: $NManga"
