@@ -9,4 +9,4 @@ date=$(date '+%d/%m/%Y')
  
 NManga=$(grep "$date" "$file" | wc -l)
 
-echo " ┃ Manga: $NManga"
+[ $NManga = 0 ] && echo "" || echo " ┃ Manga: $NManga"
