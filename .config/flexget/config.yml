@@ -11,17 +11,21 @@ tasks:
       action: remove
 # RSS
   Mangas:
-    accept_all: yes
     sequence:
-      - rss: http://fanfox.net/rss/kanojo_okarishimasu.xml
-      - rss: http://fanfox.net/rss/domestic_na_kanojo.xml
-      - rss: http://fanfox.net/rss/enen_no_shouboutai.xml
-      - rss: http://fanfox.net/rss/boku_no_hero_academia.xml
-      - rss: http://fanfox.net/rss/gleipnir.xml
-      - rss: http://fanfox.net/rss/jagaaaaaan.xml
-      - rss: http://fanfox.net/rss/black_clover.xml
-      - rss: http://fanfox.net/rss/parallel_paradise.xml
-      - rss: http://fanfox.net/rss/a_story_about_treating_a_female_knight_who_has_never_been_treated_as_a_woman_as_a_woman.xml
+      - rss: https://mangadex.org/rss/gvKM3hsdH9pe6AwZC8RQqarbNnutykYX/manga_id/22151
+      - rss: https://mangadex.org/rss/gvKM3hsdH9pe6AwZC8RQqarbNnutykYX/manga_id/12714
+      - rss: https://mangadex.org/rss/gvKM3hsdH9pe6AwZC8RQqarbNnutykYX/manga_id/35439
+      - rss: https://mangadex.org/rss/gvKM3hsdH9pe6AwZC8RQqarbNnutykYX/manga_id/16411
+      - rss: https://mangadex.org/rss/gvKM3hsdH9pe6AwZC8RQqarbNnutykYX/manga_id/16588
+      - rss: https://mangadex.org/rss/gvKM3hsdH9pe6AwZC8RQqarbNnutykYX/manga_id/21048
+      - rss: https://mangadex.org/rss/gvKM3hsdH9pe6AwZC8RQqarbNnutykYX/manga_id/15016
+      - rss: https://mangadex.org/rss/gvKM3hsdH9pe6AwZC8RQqarbNnutykYX/manga_id/16099
+      - rss: https://mangadex.org/rss/gvKM3hsdH9pe6AwZC8RQqarbNnutykYX/manga_id/21040
+      - rss: https://mangadex.org/rss/gvKM3hsdH9pe6AwZC8RQqarbNnutykYX/manga_id/32386
+      - rss: https://mangadex.org/rss/gvKM3hsdH9pe6AwZC8RQqarbNnutykYX/manga_id/24249
+    regexp:
+      accept:
+        - (English)
     exec: echo " | $(date '+%d/%m/%Y %H:%M:%S') | {{title}} | {{url}} |" >> ~/Update\ Mangas\ History.md
   Animes:
     sequence:
