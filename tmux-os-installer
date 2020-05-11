@@ -29,32 +29,16 @@ $ECor"
 
 Menu(){
 echo -e "$BCor
-    1.Base
-    2.Sistema
-    3.Bat e Google Chrome
-    4.Fuzzy Finder e Vundle.vim
-    5.Nerd Fonts e Ranger config $YCor(pode demorar bastante tempo.)$BCor
-    6.Config e Plugins
+    1.Sistema
+    2.Bat e Google Chrome
+    3.Fuzzy Finder e Vundle.vim
+    4.Nerd Fonts e Ranger config $YCor(pode demorar bastante tempo.)$BCor
+    5.Config e Plugins
 $ECor"
 read -r Resposta
 
 case "$Resposta" in
     1)
-        #### Instalador de PPA's.
-        sudo apt install software-properties-common \
-            ubuntu-restricted-extras -y && \
-            echo -e "$BCor\n01.Base!$ECor"
-            echo -e "$Sussesso" || \
-            echo -e "$Fracasso"
-        sudo add-apt-repository ppa:xuzhen666/dockbarx -y && \
-        echo -e "$GCor\nRepositorio DockBarX Instalado!$ECor\n" || \
-        echo -e "$RCor\nErro na Insatação do Repositorio DockBarX!$ECor\n"
-        sudo add-apt-repository ppa:system76/pop -y && \
-        echo -e "$GCor\nRepositorio (Pop! os) Instalado!$ECor\n" || \
-        echo -e "$RCor\nErro na Insatação do Repositorio (Pop! os)!$ECor\n"
-        Menu ;;
-
-    2)
         #### Aplicativos e Drivers Pos-instalação.
         sudo apt install gparted \
 		libjpeg8-dev \
@@ -87,23 +71,20 @@ case "$Resposta" in
 		youtube-dl \
 		mps-youtube \
 		simple-scan \
+		numix-gtk-theme \
+                numix-icon-theme \
+                numix-icon-theme-circle \
+		ttf-mscorefonts-installer \
 		papirus-icon-theme \
 		arc-theme \
 		breeze-cursor-theme \
-		pop-fonts \
-		pop-icon-theme \
-		pop-gtk-theme \
 		blueman \
 		tmux \
 		ranger \
 		smplayer \
 		xdotool \
-		xfce4-genmon-plugin \
-		xfce4-datetime-plugin \
-		xfce4-whiskermenu-plugin \
-		dockbarx \
+		xfce4-terminal \
 		python3-libtorrent \
-		xfce4-dockbarx-plugin \
 		update-notifier -y && \
 #
 	sudo apt update && \
@@ -115,11 +96,11 @@ case "$Resposta" in
 	pip3 install transmissionrpc && \
 	pip3 install gallery-dl && \
 	pip3 install ueberzug && \
-	echo -e "$BCor\n02.Sistema!$ECor" && \
+	echo -e "$BCor\n01.Sistema!$ECor" && \
         echo -e "$Sussesso" || \
         echo -e "$Fracasso"
         Menu ;;
-    3)
+    2)
         #### Bat (cat mais bonito.)
         url1="https://github.com"
         url2=$(wget -qO- "https://github.com/sharkdp/bat/releases" \
@@ -131,7 +112,7 @@ case "$Resposta" in
             | sed 's/" rel=.*$//')
         wget -c "$url1$url2" && \
         sudo dpkg -i bat_*_amd64.deb && \
-        echo -e "$BCor\n04.Instalacao do Bat!$ECor" && \
+        echo -e "$BCor\n02.Instalacao do Bat!$ECor" && \
         echo -e "$Sussesso" || \
         echo -e "$Fracasso"
 
@@ -139,33 +120,33 @@ case "$Resposta" in
         wget -c https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && \
         sudo dpkg -i google-chrome-stable_current_amd64.deb && \
         sudo apt install -f && \
-        echo -e "$BCor\n04.Google Chrome.$ECor" && \
+        echo -e "$BCor\n02.Google Chrome.$ECor" && \
+        echo -e "$Sussesso" || \
+        echo -e "$Fracasso"
+        Menu ;;
+
+    3)
+        #### Instalação do Fuzzy Finder e Vundle.vim.
+        git clone --depth 1 https://github.com/junegunn/fzf.git ~/.config/fzf && ~/.config/fzf/install --all && \
+        git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim && \
+        echo -e "$BCor\n03.Instalacao do Fuzzy Finder e Vundle.vim$ECor" && \
         echo -e "$Sussesso" || \
         echo -e "$Fracasso"
         Menu ;;
 
     4)
-        #### Instalação do Fuzzy Finder e Vundle.vim.
-        git clone --depth 1 https://github.com/junegunn/fzf.git ~/.config/fzf && ~/.config/fzf/install --all && \
-        git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim && \
-        echo -e "$BCor\n05.Instalacao do Fuzzy Finder e Vundle.vim$ECor" && \
-        echo -e "$Sussesso" || \
-        echo -e "$Fracasso"
-        Menu ;;
-
-    5)
         #### Nerd Fonts e Ranger config.
         git clone https://github.com/ryanoasis/nerd-fonts.git && cd nerd-fonts && ./install.sh && \
         git clone https://github.com/alexanderjeurissen/ranger_devicons ~/.config/ranger/plugins/ranger_devicons && cd ~/.config/ranger/plugins/ranger_devicons && make install && \
-        echo -e "$BCor\n06.Nerd Fonts e Ranger config.$ECor" && \
+        echo -e "$BCor\n04.Nerd Fonts e Ranger config.$ECor" && \
         echo -e "$Sussesso" || \
         echo -e "$Fracasso"
         Menu ;;
-    6)
+    5)
         #### Copiar Dotfiles e Plugins.
         cp -r -v .config .irssi .vim .bash_aliases .nanorc .tmux.conf .vimrc .Xresources ~/ && \
         vim +':PluginUpdate' +':q!' +':q!' && \
-        echo -e "$BCor\n09.Copiando arquivos de configuração  e Plugins...$ECor" && \
+        echo -e "$BCor\n05.Copiando arquivos de configuração  e Plugins...$ECor" && \
         echo -e "$Sussesso" || \
         echo -e "$Fracasso"
         Menu ;;
