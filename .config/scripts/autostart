@@ -15,6 +15,12 @@
 #### Compositor para trazer transparencia a algumas janelas.
 # compton &
 
+#### Selecionando um papel de parede com gnome3.
+# while :; do
+#	 DISPLAY=:0 GSETTINGS_BACKEND=dconf gsettings set org.gnome.desktop.background picture-uri file://"$(find ~/.config/Wallpapers/ -type f | shuf -n1)" \
+#	 && sleep 120
+# done &
+
 #### Temperatura da tela
 # redshift -l -6.265936:-35.210228 &
 
