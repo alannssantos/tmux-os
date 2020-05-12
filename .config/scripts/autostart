@@ -26,6 +26,3 @@
 
 #### Iniciar Transmission
 # transmission-gtk -m &
-
-#### Calibre Server
-# calibre-server --url-prefix "~/Biblioteca do calibre/" --port 57770 &
