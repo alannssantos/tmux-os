@@ -35,9 +35,10 @@ gitR() {
 
 #### Fim da Função git status ####
 export PS1="\\n$RCor[$WCor\A$RCor] $GCor\u$YCor@$BCor\h $GCor\w$ECor\\n$YCor\$(gitB)$CCor\$(gitH)$RCor\$(gitD)$GCor\$(gitN)$CCor\$(gitR)$YCor\$(gitU)$CCor\$(gitM)$ECor $PCor$ $ECor"
+export PS2=" $GCor>$ECor "
 
 #### Aliases
-alias cat='bat --theme zenburn -p'
+alias bat='bat --theme zenburn -p'
 alias youtubemusic-dl='youtube-dl -c --extract-audio --audio-format mp3 -l --embed-thumbnail --add-metadata'
 alias youtube-dl='youtube-dl -c --add-metadata'
 alias tfilmes='transmission-remote -a -w /media/Stronger/Plex/Filmes'
@@ -75,10 +76,10 @@ ranger --selectfile="$(fzf -e | xargs -r -0)"
 }
 
 fzf-dmenu() {
-    Name=$(sed '/^Name=/!d' /usr/share/applications/*.desktop | sed 's/^Name\=//' > /tmp/tmp.Name)
-    Exec=$(sed '/^Exec=/!d' /usr/share/applications/*.desktop > /tmp/tmp.Exec)
-        selected="$(paste -d '\n' /tmp/tmp.Name /tmp/tmp.Exec | sed 'N;s/\nExec\=/ -- /' | fzf -e | sed 's/^.*-- //' | sed 's/%.//')"
-        nohup $selected >/dev/null 2>&1&
+	Name=$(sed '/^Name=/!d' /usr/share/applications/*.desktop | sed 's/^Name\=//' > /tmp/tmp.Name)
+	Exec=$(sed '/^Exec=/!d' /usr/share/applications/*.desktop > /tmp/tmp.Exec)
+		selected="$(paste -d '\n' /tmp/tmp.Name /tmp/tmp.Exec | sed 'N;s/\nExec\=/ -- /' | fzf -e | sed 's/^.*-- //' | sed 's/%.//')"
+		nohup $selected >/dev/null 2>&1&
 }
 
 bind '"\C-F":"finder\n"'
