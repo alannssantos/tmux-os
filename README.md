@@ -33,3 +33,8 @@ $ systemctl status bluetooth
 Lembrar de colocar no atalho de teclado.
 
 `xfce4-terminal --drop-down --hide-menubar --fullscreen --hide-toolbar -e tmux`
+
+#### Configurar Transmission
+
+* Desabilitar (Mostrar o diálogo "Opção de torrent")
+* Habilitar (Permitir acesso remoto)
