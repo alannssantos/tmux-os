@@ -26,3 +26,9 @@ $ sudo systemctl enable bluetooth
 $ sudo systemctl restart bluetooth
 $ systemctl status bluetooth
 ```
+
+#### Função Drop-Down.
+
+Lembrar de colocar no atalho de teclado.
+
+`xfce4-terminal --drop-down --hide-menubar --fullscreen --hide-toolbar -e tmux`
