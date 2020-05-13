@@ -1,5 +1,5 @@
 # Tmux
-
+![Screenshot of my desktop](https://raw.githubusercontent.com/alannssantos/tmux-os/master/.screenshots/Tmux.png "Screenshot")
 # Configuração
 
 #### Crontab `/etc/crontab`.
