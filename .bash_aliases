@@ -39,7 +39,7 @@ export PS2=" $GCor>$ECor "
 
 #### Aliases
 alias bat='bat --theme zenburn -p'
-alias youtubemusic-dl='youtube-dl -c --extract-audio --audio-format mp3 -l --embed-thumbnail --add-metadata'
+alias youtubemusic-dl='youtube-dl -c --extract-audio --audio-format mp3 -o "%(autonumber)s-%(title)s.%(ext)s" --embed-thumbnail --add-metadata'
 alias youtube-dl='youtube-dl -c --add-metadata'
 alias tfilmes='transmission-remote -a -w /media/Stronger/Plex/Filmes'
 alias tseries='transmission-remote -a -w /media/Stronger/Plex/Series'
