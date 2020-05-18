@@ -80,7 +80,6 @@ case "$Resposta" in
 		breeze-cursor-theme \
 		blueman \
 		tmux \
-		ranger \
 		smplayer \
 		xdotool \
 		xfce4-terminal \
