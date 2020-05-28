@@ -21,6 +21,9 @@
 #   && sleep 120
 # done &
 
+#### KeyBinding sxhkd
+# sxhkd &
+
 #### Temperatura da tela
 # redshift -l -6.265936:-35.210228 &
 
