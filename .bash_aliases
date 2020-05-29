@@ -79,8 +79,10 @@ fzf-dmenu() {
 		nohup $selected >/dev/null 2>&1&
 }
 
-fzf-bookmarks() { 
-        Link=$(cat ~/.config/surfraw/bookmarks | sed '/^$/d' | sort -n | fzf -e --color=16 --border | sed 's/^.* //')
+fzf-bookmarks() {
+# File can be export by google chrome
+        bookmarks=~/.favoritos_27_05_2020.html
+        Link=$(sed -e '/HREF=\"/!d' -e 's/^.*HREF=\"//;s/<\/A>.*$//;s/".*.>/ /' $bookmarks | fzf -e --color=16 --border | sed 's/ .*$//')
                 [ -z "$Link" ] && exit || nohup exo-open --launch WebBrowser "$Link" >/dev/null 2>&1&
 }
 
