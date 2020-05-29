@@ -79,7 +79,10 @@ fzf-dmenu() {
 		nohup $selected >/dev/null 2>&1&
 }
 
-fzf-bookmarks() { surfraw "$(cat ~/.config/surfraw/bookmarks | sed '/^$/d' | sort -n | fzf -e --color=16 --border )" ;}
+fzf-bookmarks() { 
+        Link=$(cat ~/.config/surfraw/bookmarks | sed '/^$/d' | sort -n | fzf -e --color=16 --border | sed 's/^.* //')
+                [ -z "$Link" ] && exit || nohup exo-open --launch WebBrowser "$Link" >/dev/null 2>&1&
+}
 
 bind '"\C-F":"finder\n"'
 bind '"\C-X":"tmux attach || tmux\n"'
