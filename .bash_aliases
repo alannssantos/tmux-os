@@ -81,9 +81,10 @@ fzf-dmenu() {
 
 fzf-bookmarks() {
 # File can be export by google chrome
+        browser="exo-open --launch WebBrowser"
         bookmarks=~/.favoritos_27_05_2020.html
         Link=$(sed -e '/HREF=\"/!d' -e 's/^.*HREF=\"//;s/<\/A>.*$//;s/".*.>/ /' $bookmarks | fzf -e --color=16 --border | sed 's/ .*$//')
-                [ -z "$Link" ] && exit || nohup exo-open --launch WebBrowser "$Link" >/dev/null 2>&1&
+                [ -z "$Link" ] && exit || nohup $browser "$Link" >/dev/null 2>&1&
 }
 
 bind '"\C-F":"finder\n"'
