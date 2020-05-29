@@ -48,7 +48,9 @@ case "$Resposta" in
 		curl \
 		slop \
 		lynx \
+		fonts-firacode \
 		sxiv \
+		sxhkd \
 		redshift \
 		aptitude \
 		alsa-utils \

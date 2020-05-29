@@ -41,9 +41,6 @@ export PS2=" $GCor>$ECor "
 alias bat='bat --theme zenburn -p'
 alias youtubemusic-dl='youtube-dl -c --extract-audio --audio-format mp3 -o "%(autonumber)s-%(title)s.%(ext)s" --embed-thumbnail --add-metadata'
 alias youtube-dl='youtube-dl -c --add-metadata'
-alias tfilmes='transmission-remote -a -w /media/Stronger/Plex/Filmes'
-alias tseries='transmission-remote -a -w /media/Stronger/Plex/Series'
-alias tanimes='transmission-remote -a -w /media/Stronger/Plex/Series/Animes'
 alias trc='~/.config/tremc/tremc'
 
 #### Exports
@@ -61,26 +58,28 @@ export LESS_TERMCAP_us=$'\e[1;4;31m'
 
 ### Mostrar arquivos ocultos com FZF e abri com o aplcativo padrão pra determinado arquivo.
 
-export FZF_DEFAULT_COMMAND='find /home /media'
+export FZF_DEFAULT_COMMAND='find /home /media /mnt'
 
 w3mimg () {
         w3m -o imgdisplay=/usr/lib/w3m/w3mimgdisplay $1
 }
 
 selecter() {
-rifle "$(fzf -e --border --preview 'bat --style=numbers --color=always {} | head -500' | xargs -r -0)"
+rifle "$(fzf -e --color=16 --border --preview 'bat --style=numbers --color=always {} | head -500' | xargs -r -0)"
 }
 
 finder() {
-ranger --selectfile="$(fzf -e | xargs -r -0)"
+ranger --selectfile="$(fzf -e --color=16 --border | xargs -r -0)"
 }
 
 fzf-dmenu() {
 	Name=$(sed '/^Name=/!d' /usr/share/applications/*.desktop | sed 's/^Name\=//' > /tmp/tmp.Name)
 	Exec=$(sed '/^Exec=/!d' /usr/share/applications/*.desktop > /tmp/tmp.Exec)
-		selected="$(paste -d '\n' /tmp/tmp.Name /tmp/tmp.Exec | sed 'N;s/\nExec\=/ -- /' | fzf -e | sed 's/^.*-- //' | sed 's/%.//')"
+		selected="$(paste -d '\n' /tmp/tmp.Name /tmp/tmp.Exec | sed 'N;s/\nExec\=/ -- /' | fzf -e --color=16 --border | sed 's/^.*-- //' | sed 's/%.*$//')"
 		nohup $selected >/dev/null 2>&1&
 }
+
+fzf-bookmarks() { surfraw "$(cat ~/.config/surfraw/bookmarks | sed '/^$/d' | sort -n | fzf -e --color=16 --border )" ;}
 
 bind '"\C-F":"finder\n"'
 bind '"\C-X":"tmux attach || tmux\n"'
