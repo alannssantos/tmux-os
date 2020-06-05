@@ -1,9 +1,12 @@
 #!/usr/bin/env bash
 
-link="https://dolarhoje.com"
+lbc=$(wget -qO- "brl.rate.sx/lbc" \
+        | grep median \
+        | egrep -o '.\...' \
+        | sed -e '2!d' -e 's/^/ ┃ 📚 /')
 
-dollar=$(wget -qO- "$link" \
-	| grep "value=\"" \
-	| sed "s/^.*value=\"//;s/\"\/><.*$//;s/^/ ┃ 💸 /")
+dollar=$(wget -qO- "https://dolarhoje.com" \
+        | grep "value=\"" \
+        | sed "s/^.*value=\"//;s/\"\/><.*$//;s/^/ ┃ 💸 /")
 
-echo "$dollar"
+echo "$dollar$lbc"
