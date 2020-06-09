@@ -2,4 +2,4 @@
 
 update=$(aptitude show ~U | sed '/Pacote:/!d' | wc -l)
 
-[ $update = 0 ] && echo "" || echo " ┃  Updates: $update"
+[ $update = 0 ] && echo "" || echo " ┃ 📦 Updates: $update"
