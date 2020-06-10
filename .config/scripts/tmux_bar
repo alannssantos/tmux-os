@@ -1,0 +1,53 @@
+#!/usr/bin/env bash
+
+tmux_bar() {
+### Corona Virus
+corona=$(wget -qO- "https://corona-stats.online" \
+	| sed '/Brazil/!d;s/│/\n/g;s/ //g;s/║//g' \
+	| sed '1s/^/ ┃ \(Rank: /;3s/^/\) 😷 /;5s/^/ 💀 /;7s/^/ 😄 /' \
+	| sed '/ /!d' \
+	| sed ':a;$!N;s/\n//;ta;')
+################
+
+### Update Package
+update=$(aptitude show ~U | sed '/Pacote:/!d' | wc -l)
+##################
+
+### Coins
+lbc=$(wget -qO- "brl.rate.sx/lbc" \
+	| grep median \
+	| egrep -o '.\...' \
+	| sed -e '2!d' -e 's/^/ ┃ 📚 /')
+
+dollar=$(wget -qO- "https://dolarhoje.com" \
+        | grep "value=\"" \
+	| sed "s/^.*value=\"//;s/\"\/><.*$//;s/^/ ┃ 💸 /")
+#########
+
+### Internet
+internet=$(sed -e '/up\|down/!d' -e 's/down/ ┃ ❎/;s/up/ ┃ 🌐/' /sys/class/net/*/operstate \
+	| sed ':a;$!N;s/\n/ /;ta;')
+############
+
+### Manga Update
+file=~/Update\ Mangas\ History.md
+date=$(date '+%d/%m/%Y')
+
+[ ! -f "$file" ] \
+&& echo -e " | Data | Titulo | Url |\n |:-----------:|:-----------:|:--------:|" >> "$file"
+ 
+NManga=$(grep "$date" "$file" | wc -l)
+################
+
+####### Exec #######
+echo -n "$internet"
+[ $NManga = 0 ] && echo -n "" || echo -n " ┃ Manga: $NManga"
+echo -n "$corona"
+echo -n "$dollar$lbc"
+[ $update = 0 ] && echo -n "" || echo -n " ┃ 📦 Updates: $update"
+####################
+}
+
+####### Atualiza a Cada Minuto #######
+[ $(date -r /tmp/tmux_bar +%M) = $(date '+%M') ] && cat /tmp/tmux_bar || tmux_bar > /tmp/tmux_bar
+######################################

@@ -8,7 +8,7 @@ link3='/all/all/0'
 
 #program='/usr/bin/transmission-remote -n transmission:transmission -a'
 
-program='/usr/bin/qbittorrent'
+program='transmission-gtk'
 
 if [ -z "$link2" ] ; then
     search="0"

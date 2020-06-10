@@ -12,7 +12,7 @@
 # magnet link to torrent will be appended
 # you can add -- at the end to indicate end of options
 # (if your program supports it, most do)
-program='qbittorrent'
+program='transmission-gtk'
 TPB="https://1337x.to"
 
 # show N first matches by default

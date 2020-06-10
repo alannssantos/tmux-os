@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+#### Para este script fucionar o "flexget" e "gallery-dl" tem que esta instalado e fucionando.
+
+file=~/Update\ Mangas\ History.md
+
+download=$(cat "$file" | fzf -e -m --layout=reverse-list --color=16 --border | sed 's/|/\n/g;s/ //g' | sed '/http/!d' | sed ':a;$!N;s/\n/ /;ta;' | sed 's/^/gallery-dl /')
+
+$download
