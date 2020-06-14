@@ -39,12 +39,23 @@ date=$(date '+%d/%m/%Y')
 NManga=$(grep "$date" "$file" | wc -l)
 ################
 
+### Transmission
+torrent=$(transmission-remote -l \
+        | sed '/%/!d' \
+        | sed 's/.*Stopped.*/🔴/g;s/.*Seeding.*/🌱/g;s/.*100%.*/✅/g;s/.*Idle.*/⌛️/g;s/.*Uploading.*/🔼/g;s/.*%.*/🔽/g' \
+        | uniq -c \
+        | sed 's/ //g' \
+        | sed ':a;$!N;s/\n/ /;ta;' \
+        | sed 's/^/ ┃ /')
+################
+
 ####### Exec #######
-echo -n "$internet"
+[ $update = 0 ] && echo -n "" || echo -n " ┃ 📦 Updates: $update"
 [ $NManga = 0 ] && echo -n "" || echo -n " ┃ Manga: $NManga"
+echo -n "$torrent"
 echo -n "$corona"
 echo -n "$dollar$lbc"
-[ $update = 0 ] && echo -n "" || echo -n " ┃ 📦 Updates: $update"
+echo -n "$internet"
 ####################
 }
 
