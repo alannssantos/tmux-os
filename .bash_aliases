@@ -44,6 +44,7 @@ alias youtube-dl='youtube-dl -c --add-metadata'
 alias trc='~/.config/tremc/tremc'
 
 #### Exports
+set -o vi
 export EDITOR="vim"
 export PATH="$PATH:~/.config/scripts"
 
