@@ -68,7 +68,7 @@ anime_list(){
 		echo -n ""
 	else
 		name_anime=$(wget -qO- "$link" | sed '/loop-content phpvibe-video-list miau/!d' | sed 's/^.*id=\"3\" title=\"//;s/ &#[0-9]*;//g;s/\".*$//')
-		grep -q "$name_anime" "/tmp/goyabu_list" \
+		grep -q "$name_anime" "/tmp/goyabu_list"
 		[ $? -eq 0 ] || cache_list > /tmp/goyabu_list \
 		&& r=$(cat /tmp/goyabu_list | fzf -e --color=16 --border | sed 's/^.*┃ //')
 
