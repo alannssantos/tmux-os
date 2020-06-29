@@ -1,32 +1,104 @@
 #!/usr/bin/env bash
 
-link="$1"
+link="$2"
 
 program="/usr/bin/mpv"
 
-site(){
-r=$(wget -qO- "https://goyabu.com/" | \
-        sed '/Lançamentos de Animes/!d' | \
-        sed 's/Animes Mais Populares da Semana.*$//;s/^.*Lançamentos de Animes//' | \
-        sed 's/title=\"/\n/g' | \
-        sed '/class=\"clip\"/!d' | \
-        sed 's/" href=\"/ ┃ /;s/\">.*$//;s/&#.*; //' | \
-        fzf -e --color=16 --border |\
-        sed 's/^.*┃ //')
+home(){
+r=$(wget -qO- "https://goyabu.com/" \
+	| sed '/Lançamentos de Animes/!d' \
+	| sed 's/Animes Mais Populares da Semana.*$//;s/^.*Lançamentos de Animes//' \
+	| sed 's/title=\"/\n/g' \
+	| sed '/class=\"clip\"/!d' \
+	| sed 's/" href=\"/ ┃ /;s/\">.*$//;s/&#[0-9]*; //g' \
+	| fzf -e --color=16 --border \
+	| sed 's/^.*┃ //')
 
 if [ -z "$r" ] ; then
-        echo -n ""
+	echo -n ""
 else
-        $program $(wget -qO- "$r" \
-                | sed '/file: \"/!d' \
-                | sed 's/\"}.*$// ; s/^.*file: \"//')
+	$program $(wget -qO- "$r" \
+		| sed '/file: \"/!d' \
+		| sed 's/\"}.*$// ; s/^.*file: \"//')
 fi
 }
 
-if [ -z "$link" ] ; then
-        site
+anime_page(){
+wget -qO- "$link" | sed '/loop-content phpvibe-video-list miau/!d' | sed 's/title=\"/\n/g' | sed '/class=\"clip\"/!d' | sed 's/" href=\"/ ┃ /;s/\">.*$//;s/&#[0-9]*; //g' >> /tmp/goyabu_list
+
+n=$(wget -qO- "$link" \
+	| sed '/page-numbers current/!d' \
+	| sed 's/^.*page-numbers current\">//;s/<\/a><a class=\"next page-numbers\".*$//;s/<*.*>//')
+if [ -z $n ]; then
+	echo -n ""
 else
-        $program $(wget -qO- "$link" \
-                | sed '/file: \"/!d' \
-                | sed 's/\"}.*$// ; s/^.*file: \"//')
+lista=$(seq 2 $n | sed "s|^|$link?paged=|")
+for ep in $lista 
+	do
+	wget -qO- "$ep" | sed '/loop-content phpvibe-video-list miau/!d' | sed 's/title=\"/\n/g' | sed '/class=\"clip\"/!d' | sed 's/" href=\"/ ┃ /;s/\">.*$//;s/&#[0-9]*; //g' >> /tmp/goyabu_list
+done
 fi
+r=$(cat /tmp/goyabu_list | fzf -e --color=16 --border | sed 's/^.*┃ //')
+
+if [ -z "$r" ] ; then
+	echo -n ""
+else
+	$program $(wget -qO- "$r" \
+		| sed '/file: \"/!d' \
+		| sed 's/\"}.*$// ; s/^.*file: \"//')
+fi
+rm /tmp/goyabu_list
+}
+
+anime_list(){
+	anime_selected=$(wget -qO- "https://goyabu.com/?s=" \
+		| sed '/Você pesquisou por:/!d' \
+		| sed "s/title=\"/\n/g" \
+		| sed '/class=\"clip\"/!d' \
+		| sed 's/\" href=\"/ ┃ /;s/">.*$//' \
+		| fzf -e --color=16 --border \
+		| sed 's/^.*┃ //')
+	if [ -z $anime_selected ] ; then
+		echo -n ""
+	else
+	wget -qO- "$anime_selected" | sed '/loop-content phpvibe-video-list miau/!d' | sed 's/title=\"/\n/g' | sed '/class=\"clip\"/!d' | sed 's/" href=\"/ ┃ /;s/\">.*$//;s/&#[0-9]*; //g' >> /tmp/goyabu_list
+
+	n=$(wget -qO- "$anime_selected" \
+		| sed '/page-numbers current/!d' \
+		| sed 's/^.*page-numbers current\">//;s/<\/a><a class=\"next page-numbers\".*$//;s/<*.*>//')
+		if [ -z $n ]; then
+			echo -n ""
+		else
+		lista=$(seq 2 $n | sed "s|^|$anime_selected?paged=|")
+		for ep in $lista 
+			do
+			wget -qO- "$ep" | sed '/loop-content phpvibe-video-list miau/!d' | sed 's/title=\"/\n/g' | sed '/class=\"clip\"/!d' | sed 's/" href=\"/ ┃ /;s/\">.*$//;s/&#[0-9]*; //g' >> /tmp/goyabu_list
+		done
+		fi
+		r=$(cat /tmp/goyabu_list | fzf -e --color=16 --border | sed 's/^.*┃ //')
+
+		if [ -z "$r" ] ; then
+			echo -n ""
+		else
+			$program $(wget -qO- "$r" \
+				| sed '/file: \"/!d' \
+				| sed 's/\"}.*$// ; s/^.*file: \"//')
+		fi
+	fi
+	rm /tmp/goyabu_list
+}
+
+case $1 in
+	--help|-h) 
+		echo "Help page" ;;
+	"")
+		home ;;
+	-a)
+	 	anime_page ;;
+	-e)
+		$program $(wget -qO- "$link" \
+			| sed '/file: \"/!d' \
+			| sed 's/\"}.*$// ; s/^.*file: \"//') ;;
+	-s) 
+		anime_list ;;
+esac
