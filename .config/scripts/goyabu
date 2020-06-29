@@ -63,7 +63,7 @@ anime_list(){
 		| sed '/class=\"clip\"/!d' \
 		| sed 's/\" href=\"/ ┃ /;s/">.*$//' > /tmp/goyabu_anime_list \
 	&& link=$(cat /tmp/goyabu_anime_list | fzf -e --color=16 --border | sed 's/^.*┃ //')
-
+	
 	if [ -z $link ] ; then
 		echo -n ""
 	else
@@ -79,20 +79,28 @@ anime_list(){
 				| sed '/file: \"/!d' \
 				| sed 's/\"}.*$// ; s/^.*file: \"//')
 		fi
+		echo -e "\n$0 -a $link" | xclip -f -sel clip
 	fi
 }
 
 case $1 in
-	--help|-h) 
-		echo "Help page" ;;
-	"")
+	--help|-h|"") 
+		echo -e "Goyabu v2.0 - Criado por Alann Santos.
+Usage: goyabu [options]
+
+Options:
+  -l\t\tMostra os Lançamentos
+  -p\t\tPesquisa em todo o site
+  -a [url]\tPesquisa só na url do anime\n\t\tExemplo: \"goyabu -a https://goyabu.com/anime/hackroots/\"
+  -e [url]\tReproduz o Episódio passado pela url\n\t\tExemplo: \"goyabu -e https://goyabu.com/videos/1970/\"" ;;
+	-l|-L)
 		home ;;
-	-a)
+	-a|-A)
 	 	anime_page ;;
-	-e)
+	-e|-E)
 		$program $(wget -qO- "$link" \
 			| sed '/file: \"/!d' \
 			| sed 's/\"}.*$// ; s/^.*file: \"//') ;;
-	-s) 
+	-p|-P) 
 		anime_list ;;
 esac
