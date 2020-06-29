@@ -95,7 +95,8 @@ Options:
   -l\t\tMostra os Lançamentos
   -p\t\tPesquisa em todo o site
   -a [url]\tPesquisa só na url do anime\n\t\t- Exemplo: \"goyabu -a https://goyabu.com/anime/hackroots/\"
-  -e [url]\tReproduz o Episódio passado pela url\n\t\t- Exemplo: \"goyabu -e https://goyabu.com/videos/1970/\"" ;;
+  -e [url]\tReproduz o Episódio passado pela url\n\t\t- Exemplo: \"goyabu -e https://goyabu.com/videos/1970/\"
+  " ;;
 	-l|-L)
 		home ;;
 	-a|-A)
