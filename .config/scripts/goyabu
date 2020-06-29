@@ -4,6 +4,9 @@ link=$2
 
 program="/usr/bin/mpv"
 
+[ -z $(which wget) ] && echo -e "Instale \"wget\" para confinuar\n\t- Exemplo: \"sudo apt install wget\"" && exit
+[ -z $(which fzf) ] && echo -e "Instale \"fzf\" para continuar\n\t- Exemplo: \"sudo apt install fzf\"" && exit
+
 home(){
 [ $(date -r /tmp/goyabu_home +%M) = $(date '+%M') ] \
 	|| wget -qO- "https://goyabu.com/" \
@@ -91,8 +94,8 @@ Usage: goyabu [options]
 Options:
   -l\t\tMostra os Lançamentos
   -p\t\tPesquisa em todo o site
-  -a [url]\tPesquisa só na url do anime\n\t\tExemplo: \"goyabu -a https://goyabu.com/anime/hackroots/\"
-  -e [url]\tReproduz o Episódio passado pela url\n\t\tExemplo: \"goyabu -e https://goyabu.com/videos/1970/\"" ;;
+  -a [url]\tPesquisa só na url do anime\n\t\t- Exemplo: \"goyabu -a https://goyabu.com/anime/hackroots/\"
+  -e [url]\tReproduz o Episódio passado pela url\n\t\t- Exemplo: \"goyabu -e https://goyabu.com/videos/1970/\"" ;;
 	-l|-L)
 		home ;;
 	-a|-A)
