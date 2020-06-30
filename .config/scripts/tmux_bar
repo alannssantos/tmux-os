@@ -16,7 +16,7 @@ update=$(aptitude show ~U | sed '/Pacote:/!d' | wc -l)
 ### Coins
 lbc=$(wget -qO- "brl.rate.sx/lbc" \
 	| grep median \
-	| egrep -o '.\...' \
+	| grep -Eo '.\...' \
 	| sed -e '2!d' -e 's/^/ ┃ 📚 /')
 
 dollar=$(wget -qO- "https://dolarhoje.com" \
@@ -36,7 +36,7 @@ date=$(date '+%d/%m/%Y')
 [ ! -f "$file" ] \
 && echo -e " | Data | Titulo | Url |\n |:-----------:|:-----------:|:--------:|" >> "$file"
  
-NManga=$(grep "$date" "$file" | wc -l)
+NManga=$(grep -c "$date" "$file")
 ################
 
 ### Transmission
@@ -50,8 +50,8 @@ torrent=$(transmission-remote -l \
 ################
 
 ####### Exec #######
-[ $update = 0 ] && echo -n "" || echo -n " ┃ 📦 Updates: $update"
-[ $NManga = 0 ] && echo -n "" || echo -n " ┃ Manga: $NManga"
+[ "$update" = 0 ] && echo -n "" || echo -n " ┃ 📦 Updates: $update"
+[ "$NManga" = 0 ] && echo -n "" || echo -n " ┃ Manga: $NManga"
 echo -n "$torrent"
 echo -n "$corona"
 echo -n "$dollar$lbc"
@@ -60,5 +60,9 @@ echo -n "$internet"
 }
 
 ####### Atualiza a Cada Minuto #######
-[ $(date -r /tmp/tmux_bar +%M) = $(date '+%M') ] && cat /tmp/tmux_bar || tmux_bar > /tmp/tmux_bar
+if [ "$(date -r /tmp/tmux_bar +%M)" = "$(date '+%M')" ]; then
+        cat /tmp/tmux_bar 
+else
+        tmux_bar > /tmp/tmux_bar && cat /tmp/tmux_bar
+fi
 ######################################
