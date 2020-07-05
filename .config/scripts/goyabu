@@ -4,8 +4,8 @@ link=$2
 
 program="/usr/bin/mpv"
 
-[ -z "$(which wget)" ] && echo -e "Instale \"wget\" para confinuar\n\t- Exemplo: \"sudo apt install wget\"" && exit
-[ -z "$(which fzf)" ] && echo -e "Instale \"fzf\" para continuar\n\t- Exemplo: \"sudo apt install fzf\"" && exit
+[ -z "$(command -v wget)" ] && echo -e "Instale \"wget\" para confinuar\n\t- Exemplo: \"sudo apt install wget\"" && exit
+[ -z "$(command -v fzf)" ] && echo -e "Instale \"fzf\" para continuar\n\t- Exemplo: \"sudo apt install fzf\"" && exit
 
 home(){
 [ "$(date -r /tmp/goyabu_home +%M)" = "$(date '+%M')" ] \
