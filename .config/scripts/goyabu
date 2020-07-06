@@ -14,7 +14,7 @@ home(){
 		| sed 's/Animes Mais Populares da Semana.*$//;s/^.*Lançamentos de Animes//' \
 		| sed 's/title=\"/\n/g' \
 		| sed '/class=\"clip\"/!d' \
-		| sed 's/" href=\"/ ┃ /;s/\">.*$//;s/&#[0-9]*; //g' > /tmp/goyabu_home \
+		| sed 's/" href=\"/𤭢┃ /;s/\">.*$//;s/&#[0-9]*; //g' | column -t -s "𤭢" > /tmp/goyabu_home \
 	&& r=$(fzf -e --color=16 --border < /tmp/goyabu_home | sed 's/^.*┃ //')
 
 if [ -z "$r" ] ; then
@@ -67,7 +67,8 @@ anime_list(){
 		| sed '/Você pesquisou por:/!d' \
 		| sed "s/title=\"/\n/g" \
 		| sed '/class=\"clip\"/!d' \
-		| sed 's/\" href=\"/ ┃ /;s/">.*$//' > /tmp/goyabu_anime_list \
+		| sed 's/\" href=\"/𤭢┃ /;s/">.*$//' \
+		| column -t -s "𤭢" > /tmp/goyabu_anime_list \
 	&& link=$(fzf -e --color=16 --border < /tmp/goyabu_anime_list | sed 's/^.*┃ //')
 	
 	if [ -z "$link" ] ; then
