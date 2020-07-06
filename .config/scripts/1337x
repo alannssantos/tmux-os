@@ -1,0 +1,46 @@
+#!/usr/bin/env bash
+
+#     _    _
+#    / \  | | __ _ _ __  _ __      Alann Santos
+#   / _ \ | |/ _` | '_ \| '_ \     https://github.com/alannssantos
+#  / ___ \| | (_| | | | | | | |
+# /_/   \_\_|\__,_|_| |_|_| |_|
+
+# Varialvel de Client Torrent.
+Programa="transmission-gtk"
+
+# O site que vai ser usado.
+Site="https://1337x.to"
+
+# Tratando a pesquisa.
+Pesquisa="$*"
+
+# Definindo se vai pesquisar ou olhar o top 100.
+if [ -z "$Pesquisa" ] ; then
+        Url="top-100"
+else
+        Url='search/'"$Pesquisa"'/1/'
+fi
+
+# A magica.
+Resultados=$(wget -qO- "$Site/$Url" \
+        | sed '/<td class=\"coll-[0-4]/!d;s/^.*href=\"//;s/<\/a>.*$\|<span class=\".*$\|<\/td>.*$//' \
+        | sed 's/^.*<td.*">//' \
+        | sed 's/">/┃/' \
+        | sed  'N;N;N;s!\n!┃!g' \
+        | awk -F '┃' '{print "💾"$5 "𤭢"$2 "𤭢🌱"$3 "𤭢🔽"$4 "𤭢┃"$1 }' \
+        | column -t -s "𤭢" \
+        | fzf -e -m --color=16 --border \
+        | sed 's/^.*┃//')
+
+if [ -z "$Resultados" ]; then
+        echo -n ""
+else
+        for Resultado in $Resultados
+                do
+                $Programa "$(wget -qO- "$Site$Resultado" \
+                        | sed '/Magnet Download/!d' \
+                        | sed 's/^.*href=\"//' \
+                        | sed 's/\".*$//')"
+                done
+fi
