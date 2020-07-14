@@ -4,11 +4,15 @@ link=$2
 
 program="/usr/bin/mpv"
 
+[ -e /tmp/goyabu_home ] || > /tmp/goyabu_home
+[ -e /tmp/goyabu_list ] || > /tmp/goyabu_list
+[ -e /tmp/goyabu_anime_list ] || > /tmp/goyabu_anime_list
+
 [ -z "$(command -v wget)" ] && echo -e "Instale \"wget\" para confinuar\n\t- Exemplo: \"sudo apt install wget\"" && exit
 [ -z "$(command -v fzf)" ] && echo -e "Instale \"fzf\" para continuar\n\t- Exemplo: \"sudo apt install fzf\"" && exit
 
 home(){
-[ "$(date -r /tmp/goyabu_home +%M)" = "$(date '+%M')" ] \
+[ "$(date -r /tmp/goyabu_home +%M)" = "$(date '+%M')" ] && [ -n "$(cat /tmp/goyabu_home)" ] \
 	|| wget -qO- "https://goyabu.com/" \
 		| sed '/Lançamentos de Animes/!d' \
 		| sed 's/Animes Mais Populares da Semana.*$//;s/^.*Lançamentos de Animes//' \
