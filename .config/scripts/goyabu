@@ -27,19 +27,24 @@ fi
 }
 
 cache_list(){
-	wget -qO- "$link" | sed '/loop-content phpvibe-video-list miau/!d' | sed 's/title=\"/\n/g' | sed '/class=\"clip\"/!d' | sed 's/" href=\"/ ┃ /;s/\">.*$//;s/&#[0-9]*; //g'
-
 	n=$(wget -qO- "$link" \
 		| sed '/page-numbers current/!d' \
 		| sed 's/^.*page-numbers current\">//;s/<\/a><a class=\"next page-numbers\".*$//;s/<*.*>//')
 	if [ -z "$n" ]; then
-		echo -n ""
+		wget -qO- "$link" \
+			| sed '/loop-content phpvibe-video-list miau/!d' \
+			| sed 's/title=\"/\n/g' \
+			| sed '/class=\"clip\"/!d' \
+			| sed 's/" href=\"/𤭢┃ /;s/\">.*$//;s/&#[0-9]*; //g' \
+			| column -t -s "𤭢"
 	else
-	lista=$(seq 2 "$n" | sed "s|^|$link?paged=|")
-	for ep in $lista 
-		do
-		wget -qO- "$ep" | sed '/loop-content phpvibe-video-list miau/!d' | sed 's/title=\"/\n/g' | sed '/class=\"clip\"/!d' | sed 's/" href=\"/ ┃ /;s/\">.*$//;s/&#[0-9]*; //g'
-	done
+		lista=$(seq 1 "$n" | sed "s|^|$link?paged=|" | sed ':a;$!N;s/\n/ /;ta;' | sed 's/^/wget -qO- /')
+		$lista \
+			| sed '/loop-content phpvibe-video-list miau/!d' \
+			| sed 's/title=\"/\n/g' \
+			| sed '/class=\"clip\"/!d' \
+			| sed 's/" href=\"/𤭢┃ /;s/\">.*$//;s/&#[0-9]*; //g' \
+			| column -t -s "𤭢"
 	fi
 }
 
