@@ -112,19 +112,19 @@ anime_list(){
 }
 
 case $1 in
-	--help|"") 
+	--help|-h|"") 
 		echo -e "Goyabu v2.0 - Criado por Alann Santos.
 Usage: goyabu [options]
 
 Options:
   -l\t\tMostra os Lançamentos
   -p\t\tPesquisa em todo o site
-  -h\t\tPesquisa no histórico de Anime
+  -f\t\tPesquisa no histórico de Anime
   -e [url]\tReproduz o Episódio passado pela url\n\t\t- Exemplo: \"goyabu -e https://goyabu.com/videos/1970/\"
   " ;;
 	-l|-L)
 		home ;;
-	-h|-H)
+	-f|-F)
 	 	anime_page ;;
 	-e|-E)
 		$program "$(wget -qO- "$link" \
