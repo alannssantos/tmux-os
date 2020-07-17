@@ -2,7 +2,7 @@
 
 link=$2
 
-program="/usr/bin/mpv"
+program=("/usr/bin/mpv" "/usr/bin/stream2chromecast -playurl")
 
 [ -e /tmp/goyabu_home ] || > /tmp/goyabu_home
 [ -e /tmp/goyabu_list ] || > /tmp/goyabu_list
@@ -24,10 +24,23 @@ home(){
 
 if [ -z "$r" ] ; then
 	echo -n ""
-else
-	$program "$(wget -qO- "$r" \
-		| sed '/file: \"/!d' \
-		| sed 's/\"}.*$// ; s/^.*file: \"//')"
+else	
+	Player=$(echo -e "2) Chromecast\n1) SMPlayer" | fzf --color=16 --border --no-info --phony | sed 's/) .*$//')
+	if [ -z "$Player" ] ; then
+		echo -n ""
+	else
+		case $Player in
+			1)
+				${program[0]} "$(wget -qO- "$r" \
+					| sed '/file: \"/!d' \
+					| sed 's/\"}.*$// ; s/^.*file: \"//')" ;;
+			2)
+				[ -z "$(command -v stream2chromecast)" ] && echo -e "Instale \"Stream2Chromecast\" para poder transmitir para o Chromecast" \
+				|| ${program[1]} "$(wget -qO- "$r" \
+					| sed '/file: \"/!d' \
+					| sed 's/\"}.*$// ; s/^.*file: \"//')" ;;
+		esac
+	fi
 fi
 }
 
@@ -68,10 +81,23 @@ else
 
 	if [ -z "$r" ] ; then
 		echo -n ""
-	else
-		$program "$(wget -qO- "$r" \
-			| sed '/file: \"/!d' \
-			| sed 's/\"}.*$// ; s/^.*file: \"//')"
+	else	
+		Player=$(echo -e "2) Chromecast\n1) SMPlayer" | fzf --color=16 --border --no-info --phony | sed 's/) .*$//')
+		if [ -z "$Player" ] ; then
+			echo -n ""
+		else
+			case $Player in
+				1)
+					${program[0]} "$(wget -qO- "$r" \
+						| sed '/file: \"/!d' \
+						| sed 's/\"}.*$// ; s/^.*file: \"//')" ;;
+				2)
+					[ -z "$(command -v stream2chromecast)" ] && echo -e "Instale \"Stream2Chromecast\" para poder transmitir para o Chromecast" \
+					|| ${program[1]} "$(wget -qO- "$r" \
+						| sed '/file: \"/!d' \
+						| sed 's/\"}.*$// ; s/^.*file: \"//')" ;;
+			esac
+		fi
 	fi
 fi
 }
@@ -99,10 +125,23 @@ anime_list(){
 
 		if [ -z "$r" ] ; then
 			echo -n ""
-		else
-			$program "$(wget -qO- "$r" \
-				| sed '/file: \"/!d' \
-				| sed 's/\"}.*$// ; s/^.*file: \"//')"
+		else	
+			Player=$(echo -e "2) Chromecast\n1) SMPlayer" | fzf --color=16 --border --no-info --phony | sed 's/) .*$//')
+			if [ -z "$Player" ] ; then
+				echo -n ""
+			else
+				case $Player in
+					1)
+						${program[0]} "$(wget -qO- "$r" \
+							| sed '/file: \"/!d' \
+							| sed 's/\"}.*$// ; s/^.*file: \"//')" ;;
+					2)	
+						[ -z "$(command -v stream2chromecast)" ] && echo -e "Instale \"Stream2Chromecast\" para poder transmitir para o Chromecast" \
+						|| ${program[1]} "$(wget -qO- "$r" \
+							| sed '/file: \"/!d' \
+							| sed 's/\"}.*$// ; s/^.*file: \"//')" ;;
+				esac
+			fi
 		fi
 		tanime=$(wget -qO- "$link" | sed '/<h1>/!d' | sed 's/^.*<h1>//;s/<\/h1>.*$//')
 		if ! grep -q "$tanime" "$HOME/goyabu_history"; then
@@ -127,9 +166,22 @@ Options:
 	-f|-F)
 	 	anime_page ;;
 	-e|-E)
-		$program "$(wget -qO- "$link" \
-			| sed '/file: \"/!d' \
-			| sed 's/\"}.*$// ; s/^.*file: \"//')" ;;
+		Player=$(echo -e "2) Chromecast\n1) SMPlayer" | fzf --color=16 --border --no-info --phony | sed 's/) .*$//')
+		if [ -z "$Player" ] ; then
+			echo -n ""
+		else
+			case $Player in
+				1)
+					${program[0]} "$(wget -qO- "$link" \
+						| sed '/file: \"/!d' \
+						| sed 's/\"}.*$// ; s/^.*file: \"//')" ;;
+				2)
+					[ -z "$(command -v stream2chromecast)" ] && echo -e "Instale \"Stream2Chromecast\" para poder transmitir para o Chromecast" \
+					|| ${program[1]} "$(wget -qO- "$link" \
+						| sed '/file: \"/!d' \
+						| sed 's/\"}.*$// ; s/^.*file: \"//')" ;;
+			esac
+		fi ;;
 	-p|-P) 
 		anime_list ;;
 esac
