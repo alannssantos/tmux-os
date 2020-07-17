@@ -4,10 +4,10 @@ link=$2
 
 program=("/usr/bin/mpv" "/usr/bin/stream2chromecast -playurl")
 
-[ -e /tmp/goyabu_home ] || touch /tmp/goyabu_home
-[ -e /tmp/goyabu_list ] || touch /tmp/goyabu_list
-[ -e /tmp/goyabu_anime_list ] || touch /tmp/goyabu_anime_list
-[ -e "$HOME"/goyabu_history ] || touch "$HOME"/goyabu_history
+[ -e /tmp/goyabu_home ] || true > /tmp/goyabu_home
+[ -e /tmp/goyabu_list ] || true > /tmp/goyabu_list
+[ -e /tmp/goyabu_anime_list ] || true > /tmp/goyabu_anime_list
+[ -e "$HOME"/goyabu_history ] || true > "$HOME"/goyabu_history
 
 [ -z "$(command -v wget)" ] && echo -e "Instale \"wget\" para confinuar\n\t- Exemplo: \"sudo apt install wget\"" && exit
 [ -z "$(command -v fzf)" ] && echo -e "Instale \"fzf\" para continuar\n\t- Exemplo: \"sudo apt install fzf\"" && exit
