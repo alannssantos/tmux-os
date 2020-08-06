@@ -1,14 +1,20 @@
 #!/usr/bin/env bash
 
-Bookmarks=~/.favoritos.html
+Bookmarks=~/.favoritos
 Browser="exo-open --launch WebBrowser"
-fzfopt="-e --color=16 --tiebreak=begin --border -i"
+Fzfopt="-e --color=16 --tiebreak=begin --border -i"
+
+# Pegar favoritos do YouTube (Ir para a pagina de canais (Role até o final para carregar todos.), Inspecionar (Ctrl+Shift+I), pegar o bloco de canais Selecione Copy, Copy outerHTML e salve em um arquivo com o nome de "inscritos")
+# grep '<span id="title"\|<a id="channel-info"' inscritos | sed 's/^.*\"style-scope ytd-grid-channel-renderer\">\|\">.*$//;s/^.* href=\"/https:\/\/www.youtube.com/;s/<\/span>//' | sed 'N;s/\n/┃/' | sed 's/$/ #Youtube/' >> .favoritos
+
+# Pegar favoritos do Google Chrome (Vá em Opções, Favoritos, Gerenciador de favoritos (Ctrl+Shft+O), Vá em Opções, Exportar favoritos e salve em um arquivo com o nome de favoritos.html)
+# sed -e '/HREF=\"/!d' -e 's/^.*HREF=\"//;s/<\/A>.*$//;s/".*.>/┃/' favoritos.html >> .favoritos
+
 
 while :; do
-	Site=$(sed -e '/HREF=\"/!d' -e 's/^.*HREF=\"//;s/<\/A>.*$//;s/".*.>/┃/' $Bookmarks \
-		| awk -F'┃' '{ print $2 "𤭢┃" $1 }' \
+	Site=$(awk -F'┃' '{ print $2 "𤭢┃" $1 }' $Bookmarks \
 		| column -t -s "𤭢" \
-		| fzf $fzfopt \
+		| fzf $Fzfopt \
 		| sed 's/#Porn.*┃\|#Hentai.*┃/┃--incognito /' \
 		| sed 's/^.*┃//')
 	if [[ $Site ]]; then
