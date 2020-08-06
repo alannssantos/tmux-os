@@ -73,21 +73,6 @@ finder() {
 ranger --selectfile="$(fzf -e --color=16 --border | xargs -r -0)"
 }
 
-fzf-dmenu() {
-	Name=$(sed '/^Name=/!d' /usr/share/applications/*.desktop | sed 's/^Name\=//' > /tmp/tmp.Name)
-	Exec=$(sed '/^Exec=/!d' /usr/share/applications/*.desktop > /tmp/tmp.Exec)
-		selected="$(paste -d '\n' /tmp/tmp.Name /tmp/tmp.Exec | sed 'N;s/\nExec\=/ -- /' | fzf -e --color=16 --border | sed 's/^.*-- //' | sed 's/%.*$//')"
-		nohup $selected >/dev/null 2>&1&
-}
-
-fzf-bookmarks() {
-# File can be export by google chrome
-        browser="exo-open --launch WebBrowser"
-        bookmarks=~/.favoritos_27_05_2020.html
-        Link=$(sed -e '/HREF=\"/!d' -e 's/^.*HREF=\"//;s/<\/A>.*$//;s/".*.>/ /' $bookmarks | fzf -e --color=16 --border | sed 's/ .*$//')
-                [ -z "$Link" ] && exit || nohup $browser "$Link" >/dev/null 2>&1&
-}
-
 bind '"\C-F":"finder\n"'
 bind '"\C-X":"tmux attach || tmux\n"'
 bind '"\C-A":"mounty\n"'

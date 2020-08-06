@@ -34,4 +34,5 @@ ScrollingBar=TERMINAL_SCROLLBAR_NONE
 DropdownAlwaysShowTabs=FALSE
 DropdownWidth=100
 DropdownHeight=90
-
+MiscSearchDialogOpacity=100
+MiscShowUnsafePasteDialog=FALSE

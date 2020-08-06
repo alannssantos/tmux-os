@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+Bookmarks=~/.favoritos.html
+Browser="exo-open --launch WebBrowser"
+fzfopt="-e --color=16 --tiebreak=begin --border -i"
+
+while :; do
+	Site=$(sed -e '/HREF=\"/!d' -e 's/^.*HREF=\"//;s/<\/A>.*$//;s/".*.>/┃/' $Bookmarks \
+		| awk -F'┃' '{ print $2 "𤭢┃" $1 }' \
+		| column -t -s "𤭢" \
+		| fzf $fzfopt \
+		| sed 's/#Porn.*┃\|#Hentai.*┃/┃--incognito /' \
+		| sed 's/^.*┃//')
+	if [[ $Site ]]; then
+		$Browser "$Site" &
+		break
+	else
+		break
+	fi
+done

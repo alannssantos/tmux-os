@@ -16,7 +16,6 @@ colorscheme darkgreen
 hi Normal ctermbg=none
 
 " Maps
-map f :find 
 map q :bw<CR>
 map =x :!chmod +x %<CR>
 map sc :!clear && shellcheck %<CR>
