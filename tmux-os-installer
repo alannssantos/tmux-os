@@ -78,6 +78,7 @@ case "$Resposta" in
 		arc-theme \
 		breeze-cursor-theme \
 		blueman \
+		keepassxc \
 		tmux \
 		smplayer \
 		xdotool \
