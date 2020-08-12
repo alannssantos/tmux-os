@@ -42,10 +42,12 @@ alias bat='bat --theme zenburn -p'
 alias youtubemusic-dl='youtube-dl -c --extract-audio --audio-format mp3 -o "%(autonumber)s-%(title)s.%(ext)s" --embed-thumbnail --add-metadata'
 alias youtube-dl='youtube-dl -c --add-metadata'
 alias trc='~/.config/tremc/tremc'
+alias vim='nvim'
 
 #### Exports
+
 set -o vi
-export EDITOR="vim"
+export EDITOR="nvim"
 export PATH="$PATH:~/.config/scripts"
 
 ### Man Page Colors
