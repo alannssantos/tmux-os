@@ -31,9 +31,9 @@ Menu(){
 echo -e "$BCor
     1.Sistema
     2.Bat e Google Chrome
-    3.Fuzzy Finder e Vundle.vim
+    3.Fuzzy Finder e Vim-plug
     4.Nerd Fonts e Ranger config $YCor(pode demorar bastante tempo.)$BCor
-    5.Config e Plugins
+    5.Configs
 $ECor"
 read -r Resposta
 
@@ -41,7 +41,7 @@ case "$Resposta" in
     1)
         #### Aplicativos e Drivers Pos-instalação.
         sudo apt install gparted \
-		libjpeg8-dev \
+		libjpeg62-turbo-dev \
 		zlib1g-dev \
 		python3-dev \
 		libxtst-dev \
@@ -59,8 +59,7 @@ case "$Resposta" in
 		python3-pip \
 		mpg123 \
 		pavucontrol \
-		firefox \
-		vim \
+		neovim \
 		zathura \
 		rar \
 		ffmpegthumbnailer \
@@ -70,7 +69,6 @@ case "$Resposta" in
 		irssi \
 		peek \
 		youtube-dl \
-		mps-youtube \
 		simple-scan \
 		numix-gtk-theme \
                 numix-icon-theme \
@@ -83,9 +81,9 @@ case "$Resposta" in
 		tmux \
 		smplayer \
 		xdotool \
+		transmission-gtk \
 		xfce4-terminal \
-		python3-libtorrent \
-		update-notifier -y && \
+		python3-libtorrent -y && \
 #
 	sudo apt update && \
 	sudo apt upgrade -y && \
@@ -126,10 +124,10 @@ case "$Resposta" in
         Menu ;;
 
     3)
-        #### Instalação do Fuzzy Finder e Vundle.vim.
+        #### Instalação do Fuzzy Finder e Vim-plug.
         git clone --depth 1 https://github.com/junegunn/fzf.git ~/.config/fzf && ~/.config/fzf/install --all && \
-        git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim && \
-        echo -e "$BCor\n03.Instalacao do Fuzzy Finder e Vundle.vim$ECor" && \
+        sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+        echo -e "$BCor\n03.Instalacao do Fuzzy Finder e Vim-plug$ECor" && \
         echo -e "$Sussesso" || \
         echo -e "$Fracasso"
         Menu ;;
@@ -144,9 +142,8 @@ case "$Resposta" in
         Menu ;;
     5)
         #### Copiar Dotfiles e Plugins.
-        cp -r -v .config .irssi .vim .bash_aliases .nanorc .tmux.conf .vimrc .Xresources ~/ && \
-        vim +':PluginUpdate' +':q!' +':q!' && \
-        echo -e "$BCor\n05.Copiando arquivos de configuração  e Plugins...$ECor" && \
+        cp -r -v .config .irssi .bash_aliases .nanorc .tmux.conf .Xresources ~/ && \
+        echo -e "$BCor\n05.Copiando arquivos de configuração...$ECor" && \
         echo -e "$Sussesso" || \
         echo -e "$Fracasso"
         Menu ;;

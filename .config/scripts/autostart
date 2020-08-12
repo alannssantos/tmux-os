@@ -12,20 +12,11 @@
 #### Configurar touchpad para sensibilidade no toque.
 # xinput set-prop 'SynPS/2 Synaptics TouchPad' 'libinput Tapping Enabled' 1 &
 
-#### Compositor para trazer transparencia a algumas janelas.
-# compton &
-
-#### Selecionando um papel de parede com gnome3.
-# while :; do
-#   gsettings set org.gnome.desktop.background picture-uri file://"$(find ~/.config/Wallpapers/ -type f | shuf -n1)" \
-#   && sleep 120
-# done &
-
-#### KeyBinding sxhkd
-# sxhkd &
-
 #### Temperatura da tela
-# redshift -l -6.265936:-35.210228 &
+redshift -l -6.265936:-35.210228 &
 
 #### Iniciar Transmission
-# transmission-gtk -m &
+transmission-gtk -m &
+
+#### Telegram
+telegram-desktop -startintray &

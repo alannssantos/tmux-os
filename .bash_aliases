@@ -10,7 +10,6 @@ WCor="\[$(tput bold)$(tput setaf 7)\]"	# White (Branco)
 ECor="\[$(tput sgr0)\]"			# End (Fim)
 
 #### Começo da Funções git status. ####
-
 gitB() {
     git branch 2>&1 | tee | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/' | sed 's/^/ \[/;s/$/\] /'
 }
@@ -45,7 +44,6 @@ alias trc='~/.config/tremc/tremc'
 alias vim='nvim'
 
 #### Exports
-
 set -o vi
 export EDITOR="nvim"
 export PATH="$PATH:~/.config/scripts"
@@ -60,16 +58,7 @@ export LESS_TERMCAP_ue=$'\e[0m'
 export LESS_TERMCAP_us=$'\e[1;4;31m'
 
 ### Mostrar arquivos ocultos com FZF e abri com o aplcativo padrão pra determinado arquivo.
-
 export FZF_DEFAULT_COMMAND='find /home /media /mnt'
-
-w3mimg () {
-        w3m -o imgdisplay=/usr/lib/w3m/w3mimgdisplay $1
-}
-
-selecter() {
-rifle "$(fzf -e --color=16 --border --preview 'bat --style=numbers --color=always {} | head -500' | xargs -r -0)"
-}
 
 finder() {
 ranger --selectfile="$(fzf -e --color=16 --border | xargs -r -0)"
@@ -78,5 +67,6 @@ ranger --selectfile="$(fzf -e --color=16 --border | xargs -r -0)"
 bind '"\C-F":"finder\n"'
 bind '"\C-X":"tmux attach || tmux\n"'
 bind '"\C-A":"mounty\n"'
+bind '"\C-G":"$(fzf -e)\n"'
 
-ufetch
+debfetch

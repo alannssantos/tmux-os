@@ -45,12 +45,11 @@ hi DiffChange		guibg=darkmagenta 	ctermbg=magenta 	cterm=none
 hi DiffDelete		ctermfg=blue		ctermbg=cyan 		gui=bold 		guifg=Blue 		guibg=DarkCyan
 hi DiffText		cterm=bold		ctermbg=red 		gui=bold 		guibg=Red
 
-hi Cursor		guifg=black		guibg=yellow 		ctermfg=black 		ctermbg=green
+hi Cursor		guifg=black		guibg=green 		ctermfg=black 		ctermbg=green
 hi lCursor		guifg=black 		guibg=white 		ctermfg=black 		ctermbg=white
 
-
 hi Comment		guifg=#99cc99 		ctermfg=darkgreen
-hi Constant		ctermfg=yellow 		guifg=#ffcc66 		cterm=none
+hi Constant		ctermfg=green 		guifg=#ffcc66 		cterm=none
 hi Special		ctermfg=brown 		guifg=Orange 		cterm=none		gui=none
 hi Identifier		ctermfg=cyan 		guifg=#40ffff		cterm=none
 hi Statement		ctermfg=blue 		guifg=#6699cc 		gui=bold 		cterm=bold
