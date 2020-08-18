@@ -40,13 +40,14 @@ NManga=$(grep -c "$date" "$file")
 ################
 
 ### Transmission
-torrent=$(transmission-remote -l \
-        | sed '/%/!d' \
-        | sed 's/.*Stopped.*/🔴/g;s/.*Seeding.*/🌱/g;s/.*100%.*/✅/g;s/.*Idle.*/⌛️/g;s/.*Uploading.*/🔼/g;s/.*%.*/🔽/g' \
-        | uniq -c \
-        | sed 's/ //g' \
-        | sed ':a;$!N;s/\n/ /;ta;' \
-        | sed 's/^/ ┃ /')
+torrent=$(stig ls \
+	| awk '{print $7" "$9}' \
+	| sort \
+	| sed 's/.*100.*/✅/g;s/.*stopped.*/🔴/g;s/.*seeding.*/🌱/g;s/.*connected.*\|.*idle.*\|.*discovering.*/⌛️/g;s/.*uploading.*/🔼/g;s/.*downloading/🔽[/g;s/\..*$/%]/' \
+	| uniq -c \
+	| sed 's/ //g' \
+	| sed ':a;$!N;s/\n/ /;ta;' \
+	| sed 's/^/ ┃ /')
 ################
 
 ####### Exec #######

@@ -89,6 +89,7 @@ case "$Resposta" in
 	sudo apt update && \
 	sudo apt upgrade -y && \
 	sudo -H pip3 install ranger-fm && \
+	sudo -H pip3 install stig && \
 	sudo -H pip3 install youtube-dl --upgrade && \
 	sudo -H pip3 install subliminal --upgrade && \
         sudo -H pip3 install flexget==3.1.50 && \
