@@ -61,7 +61,7 @@ echo -n "$internet"
 }
 
 ####### Atualiza a Cada Minuto #######
-if [ "$(date -r /tmp/tmux_bar +%M)" = "$(date '+%M')" ]; then
+if [ "$(date -r /tmp/tmux_bar +%M)" = "$(date '+%M')" ] && [ -n "$(cat /tmp/tmux_bar)" ]; then
         cat /tmp/tmux_bar 
 else
         tmux_bar > /tmp/tmux_bar && cat /tmp/tmux_bar
