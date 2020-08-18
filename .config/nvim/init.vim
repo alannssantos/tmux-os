@@ -25,6 +25,8 @@ call plug#begin('~/.config/nvim/plugged')
 	" ==== Python Syntax
 	Plug 'vim-python/python-syntax'
 	Plug 'valloric/youcompleteme'
+	Plug 'jiangmiao/auto-pairs'
+	Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & npm install'  }
 	
 	" ==== File tree
 	Plug 'ryanoasis/vim-devicons'
@@ -45,6 +47,7 @@ autocmd VimEnter *
 " --------------------------- Plug-config Begin ---------------------------
 
 source $HOME/.config/nvim/plug-config/airline.vim
+source $HOME/.config/nvim/plug-config/markdown-preview.vim
 
 " --------------------------- Plug-config End -----------------------------
 
