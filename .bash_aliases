@@ -38,9 +38,9 @@ export PS2=" $GCor>$ECor "
 
 #### Aliases
 alias bat='bat --theme zenburn -p'
-alias youtubemusic-dl='youtube-dl -c --extract-audio --audio-format mp3 -o "%(autonumber)s-%(title)s.%(ext)s" --embed-thumbnail --add-metadata'
+alias youtubemusic-dl='youtube-dl -c --extract-audio --audio-format mp3 -o "%(autonumber)s-%(title)s.%(ext)s" --add-metadata'
 alias youtube-dl='youtube-dl -c --add-metadata'
-alias trc='~/.config/tremc/tremc'
+alias trc='stig'
 alias vim='nvim'
 
 #### Exports
