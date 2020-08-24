@@ -80,6 +80,8 @@ case "$Resposta" in
 		blueman \
 		keepassxc \
 		tmux \
+		npm \
+		cmake \
 		smplayer \
 		xdotool \
 		transmission-gtk \
