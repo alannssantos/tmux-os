@@ -52,12 +52,13 @@ tmux_bar_inst(){
 ### Transmission
 torrent=$(stig ls \
 	| awk '{print $7" "$9}' \
-	| sort \
 	| sed 's/.*seeding.*\|.*uploading.*/#\[fg=green\] 🌱/g;
 		s/.*100.*/#\[fg=blue\] ✅/g
 		s/.*stopped.*/#\[fg=red\] 🔴/g
 		s/.*connected.*\|.*idle.*\|.*discovering.*\|.*queued.*/#\[fg=yellow\] ⌛️/g
-		s/.*downloading/#\[fg=magenta\] 🔽[/g;s/\..*$/%]/' \
+		s/.*downloading/#\[fg=magenta\] 🔽[/g;s/\..*$/%]/
+		s/.*verifying/#\[fg=yellow\] ⌛️[/g;s/\..*$/%]/' \
+	| sort \
 	| uniq -c \
 	| awk '{print $2$1$3$4}' \
 	| sed ':a;$!N;s/\n/ /;ta;' \
