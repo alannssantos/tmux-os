@@ -26,6 +26,7 @@ call plug#begin('~/.config/nvim/plugged')
 	Plug 'vim-python/python-syntax'
 	Plug 'valloric/youcompleteme'
 	Plug 'jiangmiao/auto-pairs'
+	Plug 'ntpeters/vim-better-whitespace'
 	Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & npm install'  }
 	
 	" ==== File tree
