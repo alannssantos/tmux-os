@@ -13,9 +13,7 @@ tasks:
   Mangas:
     sequence:
       - rss: https://mangadex.org/rss/gvKM3hsdH9pe6AwZC8RQqarbNnutykYX/manga_id/22151
-      - rss: https://mangadex.org/rss/gvKM3hsdH9pe6AwZC8RQqarbNnutykYX/manga_id/22529
       - rss: https://mangadex.org/rss/gvKM3hsdH9pe6AwZC8RQqarbNnutykYX/manga_id/22631
-      - rss: https://mangadex.org/rss/gvKM3hsdH9pe6AwZC8RQqarbNnutykYX/manga_id/20882
       - rss: https://mangadex.org/rss/gvKM3hsdH9pe6AwZC8RQqarbNnutykYX/manga_id/17910
       - rss: https://mangadex.org/rss/gvKM3hsdH9pe6AwZC8RQqarbNnutykYX/manga_id/12714
       - rss: https://mangadex.org/rss/gvKM3hsdH9pe6AwZC8RQqarbNnutykYX/manga_id/35439
@@ -23,17 +21,13 @@ tasks:
       - rss: https://mangadex.org/rss/gvKM3hsdH9pe6AwZC8RQqarbNnutykYX/manga_id/16588
       - rss: https://mangadex.org/rss/gvKM3hsdH9pe6AwZC8RQqarbNnutykYX/manga_id/21048
       - rss: https://mangadex.org/rss/gvKM3hsdH9pe6AwZC8RQqarbNnutykYX/manga_id/15016
-      - rss: https://mangadex.org/rss/gvKM3hsdH9pe6AwZC8RQqarbNnutykYX/manga_id/16099
       - rss: https://mangadex.org/rss/gvKM3hsdH9pe6AwZC8RQqarbNnutykYX/manga_id/21040
       - rss: https://mangadex.org/rss/gvKM3hsdH9pe6AwZC8RQqarbNnutykYX/manga_id/32386
       - rss: https://mangadex.org/rss/gvKM3hsdH9pe6AwZC8RQqarbNnutykYX/manga_id/24249
-    regexp:
-      accept:
-        - (English)
     exec: echo " | $(date '+%d/%m/%Y %H:%M:%S') | {{title}} | {{url}} |" >> ~/Update\ Mangas\ History.md
   Animes:
     sequence:
-      - rss: https://nyaa.si/?page=rss&q=Tower+of+God&c=1_2&f=2
+      - rss: https://nyaa.si/?page=rss&q=The+God+of+High+School&c=1_2&f=2
     regexp:
       accept:
         - (\[HorribleSubs\]|\[720p\]).*(\[HorribleSubs\]|\[720p\])
@@ -42,15 +36,12 @@ tasks:
       port: 9091
       username: ""
       password: ""
-      path: /media/Stronger/Plex/Series/Animes
+      path: "/media/Stronger/Emby/Animes/The God of High School"
   Filmes:
     sequence:
-      - rss: https://yts.lt/rss/SOUL/all/all/0
-      - rss: https://yts.lt/rss/Bad%Boys%For%Life/all/all/0
-      - rss: https://yts.lt/rss/F9/all/all/0
-      - rss: https://yts.lt/rss/Black%Widow/all/all/0
-      - rss: https://yts.lt/rss/SOUL/all/all/0
-      - rss: https://yts.lt/rss/Wonder%Woman%1984/all/all/0
+      - rss: https://yts.mx/rss/F9/all/all/0/en
+      - rss: https://yts.mx/rss/black%20widow/all/all/0/en
+      - rss: https://yts.mx/rss/Wonder%20Woman%201984/all/all/0/en
     regexp:
       accept:
         - (BluRay|WEB|1080p).*(BluRay|WEB|1080p)
@@ -61,12 +52,15 @@ tasks:
       port: 9091
       username: ""
       password: ""
-      path: /media/Stronger/Plex/Filmes
+      path: /media/Stronger/Emby/Filmes
   Series:
     sequence:
       - rss: https://showrss.info/show/651.rss
       - rss: https://showrss.info/show/1296.rss
       - rss: https://showrss.info/show/1283.rss
+      - rss: https://showrss.info/show/1112.rss
+      - rss: https://showrss.info/show/1338.rss
+      - rss: https://showrss.info/show/1183.rss
     regexp:
       accept:
         - (1080p)
@@ -77,4 +71,4 @@ tasks:
       port: 9091
       username: ""
       password: ""
-      path: /media/Stronger/Plex/Series
+      path: /media/Stronger/Emby/Series
