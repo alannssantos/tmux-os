@@ -2,9 +2,9 @@
 
 # Script pra encontrar rss de filmes que vão ser lançados
 
-link1='https://yts.lt/rss/'
-link2=$(echo "$*" | tr ' ' '%')
-link3='/all/all/0'
+link1='https://yts.mx/rss/'
+link2=$(echo "$*" | sed 's/ /%20/g')
+link3='/all/all/0/en'
 
 if [ -z "$link2" ] ; then
     search="0"
