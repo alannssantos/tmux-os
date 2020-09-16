@@ -55,7 +55,6 @@ case "$Resposta" in
 		aptitude \
 		alsa-utils \
 		mpv \
-		compton \
 		atool \
 		python3-pip \
 		mpg123 \
