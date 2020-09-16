@@ -2,8 +2,9 @@
 
 #### Para este script fucionar o "flexget" e "gallery-dl" tem que esta instalado e fucionando.
 
-file=~/Update\ Mangas\ History.md
+File=~/Update\ Mangas\ History.md
+Date=$(date '+%d/%m/%Y')
+NManga=$(grep "$Date" "$File")
+Download=$(echo "$NManga" | sed 's/|/\n/g;s/ //g' | sed '/http/!d' | sed ':a;$!N;s/\n/ /;ta;' | sed 's/^/gallery-dl /')
 
-download=$(fzf -e -m --layout=reverse-list --color=16 --border < "$file" | sed 's/|/\n/g;s/ //g' | sed '/http/!d' | sed ':a;$!N;s/\n/ /;ta;' | sed 's/^/gallery-dl /')
-
-$download
+$Download
