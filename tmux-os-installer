@@ -50,6 +50,7 @@ case "$Resposta" in
 		lynx \
 		fonts-firacode \
 		sxiv \
+		font-manager \
 		redshift \
 		aptitude \
 		alsa-utils \
