@@ -8,12 +8,11 @@
 #  / ___ \| | (_| | | | | | | |
 # /_/   \_\_|\__,_|_| |_|_| |_|
 
-OPCOES=$(lsblk -o "PATH,SIZE,FSTYPE,LABEL,RM,MOUNTPOINT" | sed -e '/sd.[0-9]/!d' -e 's/ 0 / \(Disco Local\)     /;s/ 1 / \(Disco Removível\) /')
+Opcoes=$(lsblk -o "PATH,SIZE,FSTYPE,LABEL,RM,MOUNTPOINT" | sed -e '/sd.[0-9]/!d' -e 's/ 0 / \(Disco Local\)     /;s/ 1 / \(Disco Removível\) /')
+Escolha=$(echo " Escolha a Partição que deve ser Montada ou Desmontada.
 
-ESCOLHA=$(echo " Escolha a Partição que deve ser Montada ou Desmontada.
-
-$OPCOES
+$Opcoes
 
  Sair" | fzf -e --layout=reverse-list --color='fg:#99cc99,fg+:#2d2d2d,bg+:#99cc99,pointer:#2d2d2d,prompt:#99cc99' --margin=5% --border --no-info --phony | sed 's/ .*$//')
 
-udisksctl mount -b $ESCOLHA $1 2> /dev/null || udisksctl unmount -b $ESCOLHA $1 2> /dev/null
+udisksctl mount -b $Escolha $1 2> /dev/null || udisksctl unmount -b $Escolha $1 2> /dev/null
