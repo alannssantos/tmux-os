@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-Ip=$(hostname -I | sed 's/ /:8000/')
+Ip=$(hostname -I | sed 's/ $\|$/:8000/')
 Server="python -m SimpleHTTPServer"
 
 echo "$(tput bold)$(tput setaf 3)
