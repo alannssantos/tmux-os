@@ -45,8 +45,8 @@ alias streamlink='streamlink -p "mpv --cache 2048 --ontop --no-border --force-wi
 
 #### Exports
 set -o vi
-export PATH="$HOME/.local/bin:$PATH"
-export PATH="$PATH:~/.config/scripts"
+export PATH="$PATH:$HOME/.local/bin"
+export PATH="$PATH:$HOME/.config/scripts"
 
 ### Man Page Colors
 export LESS_TERMCAP_mb=$'\e[1;32m'
