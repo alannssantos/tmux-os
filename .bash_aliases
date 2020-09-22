@@ -37,11 +37,11 @@ export PS1="\\n$RCor[$WCor\A$RCor] $GCor\u$YCor@$BCor\h $GCor\w$ECor\\n$YCor\$(g
 export PS2=" $GCor>$ECor "
 
 #### Aliases
-alias bat='bat --theme zenburn -p'
-alias youtubemusic-dl='youtube-dl -c --extract-audio --audio-format mp3 -o "%(autonumber)s-%(title)s.%(ext)s" --add-metadata'
-alias youtube-dl='youtube-dl -c --add-metadata'
 alias trc='stig'
-alias vim='nvim'
+alias bat='bat --theme zenburn -p'
+alias yta-mp3='youtube-dl -c --extract-audio --audio-format mp3 -o "%(autonumber)s-%(title)s.%(ext)s" --add-metadata'
+alias ytv-best='youtube-dl -c --add-metadata -f bestvideo+bestaudio'
+alias streamlink='streamlink -p "mpv --cache 2048 --ontop --no-border --force-window --autofit=500x280 --geometry=-15-60"'
 
 #### Exports
 set -o vi
