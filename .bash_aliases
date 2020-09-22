@@ -45,7 +45,7 @@ alias vim='nvim'
 
 #### Exports
 set -o vi
-export EDITOR="nvim"
+export PATH="$HOME/.local/bin:$PATH"
 export PATH="$PATH:~/.config/scripts"
 
 ### Man Page Colors
