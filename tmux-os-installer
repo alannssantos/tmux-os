@@ -90,6 +90,7 @@ case "$Resposta" in
 #
 	sudo apt update && \
 	sudo apt upgrade -y && \
+	npm config set prefix $HOME/.local && \
 	pip3 install ranger-fm && \
 	pip3 install stig && \
 	pip3 install youtube-dl --upgrade && \
@@ -146,7 +147,6 @@ case "$Resposta" in
     5)
         #### Copiar Dotfiles e Plugins.
         cp -r -v .config .irssi .bash_aliases .nanorc .tmux.conf .Xresources ~/ && \
-	npm config set prefix $HOME/.local && \
         echo -e "$BCor\n05.Copiando arquivos de configuração...$ECor" && \
         echo -e "$Sussesso" || \
         echo -e "$Fracasso"
