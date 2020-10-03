@@ -1,56 +1,15 @@
 #!/usr/bin/env bash
 
 tmux_bar_sleep1() {
-#### Internet
-internet=$(sed -e '/up\|down/!d' -e 's/down/ #[fg=green]┃ #[fg=red]❎/;s/up/ #[fg=green]┃ 🌐/' /sys/class/net/*/operstate \
-	| sed ':a;$!N;s/\n/ /;ta;')
-############
-
-## Corona Virus
-corona=$(wget -qO- "https://corona-stats.online" \
-	| sed '/Brazil/!d;s/│/\n/g;s/ //g;s/║//g' \
-	| sed '1s/^/ #[fg=green]┃ \(Rank: /;3s/^/\) 😷 /;5s/^/ 💀 /;7s/^/ 😄 /' \
-	| sed '/ /!d' \
-	| sed ':a;$!N;s/\n//;ta;')
-################
-
-### Update Package
-update=$(aptitude show ~U | sed '/Pacote:/!d' | wc -l)
-##################
-
-### Coins
-lbc=$(wget -qO- "brl.rate.sx/lbc" \
-	| grep median \
-	| grep -Eo '.\...' \
-	| sed -e '2!d' -e 's/^/ #[fg=green]┃ 📚 /')
-
-dollar=$(wget -qO- "https://dolarhoje.com" \
-        | grep "value=\"" \
-	| sed "s/^.*value=\"//;s/\"\/><.*$//;s/^/ #[fg=green]┃ 💸 /")
-#########
-
-### Manga Update
-file=~/Update\ Mangas\ History.md
-date=$(date '+%d/%m/%Y')
-
-[ ! -f "$file" ] \
-&& echo -e " | Data | Titulo | Url |\n |:-----------:|:-----------:|:--------:|" >> "$file"
- 
-NManga=$(grep -c "$date" "$file")
-################
-
-####### Exec #######
-[ "$update" = 0 ] && echo -n "" || echo -n " #[fg=green]┃ #[fg=yellow]📦 Updates: $update"
-[ "$NManga" = 0 ] && echo -n "" || echo -n " #[fg=green]┃ #[fg=blue]Manga: $NManga"
-echo -n "$corona"
-echo -n "$dollar$lbc"
-echo -n "$internet"
-####################
+#### Update Package
+Update=$(apt list --upgradable | sed '/\//!d' | wc -l)
+[ "$Update" = 0 ] && echo -n "" || echo -n " #[fg=green]┃ #[fg=yellow]📦 Updates: $Update"
+####━━━━━━━━━━━━━━
 }
 
 tmux_bar_inst(){
-### Transmission
-torrent=$(stig ls \
+#### Transmission
+Torrent=$(stig ls \
 	| awk '{print $7" "$9}' \
 	| sed 's/.*seeding.*\|.*uploading.*/#\[fg=green\] 🌱/g;
 		s/.*100.*/#\[fg=blue\] ✅/g
@@ -63,24 +22,40 @@ torrent=$(stig ls \
 	| awk '{print $2$1$3$4}' \
 	| sed ':a;$!N;s/\n/ /;ta;' \
 	| sed 's/^/ #[fg=green]┃ /')
-################
+echo -n "$Torrent"
+####━━━━━━━━━━━━
 
-### Moc Player ###
+#### Manga Update
+File=~/Update\ Mangas\ History.md
+Date=$(date '+%d/%m/%Y')
+[ ! -f "$File" ] && echo -e " | Data | Titulo | Url |\n |:-----------:|:-----------:|:--------:|" >> "$File"
+NManga=$(grep -c "$Date" "$File")
+[ "$NManga" = 0 ] && echo -n "" || echo -n " #[fg=green]┃ #[fg=blue]Manga: $NManga"
+####━━━━━━━━━━━━
+
+#### Moc Player
 Player=$(mocp -i \
 	| sed '/^SongTitle:\|^Artist:/!d' \
 	| sed 'N;s/\nSongTitle: / - /;s/Artist: / #[fg=green]┃ 🎵 /')
-##################
-
-####### Exec #######
 echo -n "$Player"
-echo -n "$torrent"
-####################
+####━━━━━━━━━━
+
+#### Temperatura CPU
+Temp=$(sensors | sed '/Package id 0:/!d;s/°C.*$/°C/;s/^.*+/ #[fg=green]┃ 🌡️ /')
+echo -n "$Temp"
+####━━━━━━━━━━━━━━━
+
+#### Internet
+Internet=$(sed '/up\|down/!d;s/down//;s/up/ #[fg=green]┃ 🌐/' /sys/class/net/*/operstate \
+	| sed ':a;$!N;s/\n/ /;ta;')
+echo -n "$Internet"
+####━━━━━━━━
 }
 
 ####### Atualiza a Cada Minuto #######
-if [ "$(date -r /tmp/tmux_bar_sleep1 +%M)" = "$(date '+%M')" ] && [ -n "$(cat /tmp/tmux_bar_sleep1)" ]; then
-	tmux_bar_inst && cat /tmp/tmux_bar_sleep1
+if [ "$(date -r /tmp/tmux_bar_sleep1 +%M)" = "$(date '+%M')" ]; then
+	cat /tmp/tmux_bar_sleep1 && tmux_bar_inst
 else
-	tmux_bar_sleep1 > /tmp/tmux_bar_sleep1 && tmux_bar_inst && cat /tmp/tmux_bar_sleep1
+	tmux_bar_sleep1 > /tmp/tmux_bar_sleep1 && cat /tmp/tmux_bar_sleep1 && tmux_bar_inst
 fi
-######################################
+#######━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
