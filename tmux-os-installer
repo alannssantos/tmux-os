@@ -52,7 +52,6 @@ case "$Resposta" in
 		sxiv \
 		font-manager \
 		redshift \
-		aptitude \
 		alsa-utils \
 		mpv \
 		atool \
