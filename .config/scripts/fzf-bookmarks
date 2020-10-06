@@ -15,7 +15,7 @@ while :; do
 	Site=$(awk -F'┃' '{ print $2 "𤭢┃" $1 }' $Bookmarks \
 		| column -t -s "𤭢" \
 		| fzf $Fzfopt \
-		| sed 's/#Porn.*┃\|#Hentai.*┃/┃--incognito /' \
+		| sed 's/#Porn.*┃\|#Hentai.*┃/┃--private-window /' \
 		| sed 's/^.*┃//')
 	if [[ $Site ]]; then
 		$Browser "$Site" &
