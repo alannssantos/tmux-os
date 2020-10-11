@@ -29,7 +29,7 @@ alias streamlink='streamlink -p "mpv --cache 2048 --ontop --no-border --force-wi
 
 #### Funções.
 finder() { ranger --selectfile="$(fzf -e --color=16 --border | xargs -r -0)" ;}
-justread() { readable "$1" -p html-title,html-content > /tmp/readable.html;w3m /tmp/readable.html ;}
+justread() { python3 -m readability.readability -u "$1" > /tmp/readable.html&&w3m /tmp/readable.html ;}
 hideinimage() { cat "$@" > "copy_$1" ;}
 
 #### Exports.
