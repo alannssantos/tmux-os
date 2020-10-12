@@ -24,7 +24,7 @@ tasks:
       - rss: https://mangadex.org/rss/gvKM3hsdH9pe6AwZC8RQqarbNnutykYX/manga_id/21040
       - rss: https://mangadex.org/rss/gvKM3hsdH9pe6AwZC8RQqarbNnutykYX/manga_id/32386
       - rss: https://mangadex.org/rss/gvKM3hsdH9pe6AwZC8RQqarbNnutykYX/manga_id/24249
-    exec: echo " | $(date '+%d/%m/%Y %H:%M:%S') | {{title}} | {{url}} |" >> ~/Update\ Mangas\ History.md
+    exec: echo " | $(date '+%d/%m/%Y %H:%M:%S') | {{title}} | {{url}} |" >> ~/Update\ Mangas\ History.md ; gallery-dl {{url}} &
   Animes:
     sequence:
       - rss: https://nyaa.si/?page=rss&q=The+God+of+High+School&c=1_2&f=2
