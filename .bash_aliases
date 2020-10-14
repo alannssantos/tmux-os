@@ -26,6 +26,7 @@ alias bat='bat --theme zenburn -p'
 alias yta-mp3='youtube-dl -c --extract-audio --audio-format mp3 -o "%(autonumber)s-%(title)s.%(ext)s" --add-metadata'
 alias ytv-best='youtube-dl -c --add-metadata -f bestvideo+bestaudio'
 alias streamlink='streamlink -p "mpv --cache 2048 --ontop --no-border --force-window --autofit=500x280 --geometry=-15-60"'
+alias lynx='lynx -accept_all_cookies -image_links'
 
 #### Funções.
 finder() { ranger --selectfile="$(fzf -e --color=16 --border | xargs -r -0)" ;}
