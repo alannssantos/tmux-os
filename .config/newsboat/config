@@ -12,3 +12,4 @@ reload-time 30
 swap-title-and-hints yes  # Like Mutt.
 
 macro m set browser "mpv %u > /dev/null &"; open-in-browser ; set browser "$BROWSER %u"
+macro n set browser "readable %u -p html-title,html-content > /tmp/readable.html&&lynx -image_links /tmp/readable.html"; open-in-browser
