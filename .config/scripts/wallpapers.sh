@@ -26,6 +26,7 @@
 real_wall_dir=~/.config/wallpapers
 temp_wall_dir=/tmp/wallpaper_wallhaven
 expire_wall_date=7
+link_wall=("https://wallhaven.cc/search?q=id%3A64534&categories=010&purity=100&atleast=1920x1080&ratios=16x9&sorting=random&order=desc")
 
 # create folders
 mkdir -p $real_wall_dir
@@ -34,7 +35,7 @@ mkdir -p $temp_wall_dir
 cd $temp_wall_dir
 
 # get links of images and download it
-get_random_url=$(lynx -listonly -nonumbers -dump "https://wallhaven.cc/search?q=id%3A711&categories=010&purity=100&atleast=1920x1080&ratios=16x9&sorting=random&order=desc" | grep '/w/')
+get_random_url=$(lynx -listonly -nonumbers -dump ${link_wall[@]} | grep '/w/')
 get_images_url=$(echo "$get_random_url" | while read line; do lynx -source "$line" | grep -Po '<img id="wallpaper" src="\K[^"]+' ; done )
 dl_images=$(echo "$get_images_url" | while read line; do wget -N "$line" ; done)
 
@@ -55,4 +56,3 @@ find . -type f -iname "*.png" -exec mv {} $real_wall_dir \;
 #  delete wallpaper image older then X days and remove temp folder
 rm -rf $temp_wall_dir
 find $real_wall_dir -mtime +$expire_wall_date -exec rm {} \;
-
