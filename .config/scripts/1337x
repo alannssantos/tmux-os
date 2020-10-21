@@ -17,9 +17,9 @@ Pesquisa="$*"
 
 # Definindo se vai pesquisar ou olhar o top 100.
 if [ -z "$Pesquisa" ] ; then
-        Url="top-100"
+	Url="top-100"
 else
-        Url='search/'"$Pesquisa"'/1/'
+	Url='search/'"$Pesquisa"'/1/'
 fi
 
 # A magica.
@@ -29,20 +29,18 @@ Resultados=$(wget -qO- "$Site/$Url" \
 		s/^.*mob-[a-z]*">(.*)<span.*$/\1/
 		s/^.*seeds">(.*)<.*$/\1/
 		s/^.*href=\"(\/torrent.*)\">(.*)<\/a>.*$/\2┃\1/' \
-        | sed  'N;N;N;s!\n!┃!g' \
-        | awk -F '┃' '{print "💾"$5 "𤭢"$1 "𤭢🌱"$3 "𤭢🔽"$4 "𤭢┃"$2 }' \
-        | column -t -s "𤭢" \
-        | fzf -e -m --color=16 --border \
-        | sed 's/^.*┃//')
+	| sed  'N;N;N;s!\n!┃!g' \
+	| awk -F '┃' '{print "💾"$5 "𤭢"$1 "𤭢🌱"$3 "𤭢🔽"$4 "𤭢┃"$2 }' \
+	| column -t -s "𤭢" \
+	| fzf -e -m --color=16 --border \
+	| sed 's/^.*┃//')
 
 if [ -z "$Resultados" ]; then
-        echo -n ""
+	echo -n ""
 else
-        for Resultado in $Resultados
-                do
-                $Programa "$(wget -qO- "$Site$Resultado" \
-                        | sed '/Magnet Download/!d' \
-                        | sed 's/^.*href=\"//' \
-                        | sed 's/\".*$//')"
+	for Resultado in $Resultados
+		do
+		$Programa "$(wget -qO- "$Site$Resultado" \
+			| sed -r '/Magnet Download/!d;s/^.*href=\"(.*)\".*$/\1/')"
                 done
 fi
