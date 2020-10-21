@@ -24,11 +24,13 @@ fi
 
 # A magica.
 Resultados=$(wget -qO- "$Site/$Url" \
-        | sed '/<td class=\"coll-[0-4]/!d;s/^.*href=\"//;s/<\/a>.*$\|<span class=\".*$\|<\/td>.*$//' \
-        | sed 's/^.*<td.*">//' \
-        | sed 's/">/┃/' \
+	| sed -r '/<td class=\"coll-[0-4]/!d
+		s/^.*leeches">(.*)<.*$/\1/
+		s/^.*mob-[a-z]*">(.*)<span.*$/\1/
+		s/^.*seeds">(.*)<.*$/\1/
+		s/^.*href=\"(\/torrent.*)\">(.*)<\/a>.*$/\2┃\1/' \
         | sed  'N;N;N;s!\n!┃!g' \
-        | awk -F '┃' '{print "💾"$5 "𤭢"$2 "𤭢🌱"$3 "𤭢🔽"$4 "𤭢┃"$1 }' \
+        | awk -F '┃' '{print "💾"$5 "𤭢"$1 "𤭢🌱"$3 "𤭢🔽"$4 "𤭢┃"$2 }' \
         | column -t -s "𤭢" \
         | fzf -e -m --color=16 --border \
         | sed 's/^.*┃//')
