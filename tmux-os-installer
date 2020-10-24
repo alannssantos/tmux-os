@@ -106,12 +106,8 @@ case "$Resposta" in
         #### Bat (cat mais bonito.)
         url1="https://github.com"
         url2=$(wget -qO- "https://github.com/sharkdp/bat/releases" \
-            | grep "<a href=" \
-            | grep "bat_" \
-            | grep "_amd64.deb" \
-            | sed '1!d' \
-            | sed 's/^.*href="//' \
-            | sed 's/" rel=.*$//')
+		| sed -r '/bat_.*_amd64.deb/!d;s/^.*href="(.*)" rel=.*$/\1/' \
+		| sed '1!d')
         wget -c "$url1$url2" && \
         sudo dpkg -i bat_*_amd64.deb && \
         echo -e "$BCor\n02.Instalacao do Bat!$ECor" && \
