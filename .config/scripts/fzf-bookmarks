@@ -2,18 +2,18 @@
 
 Bookmarks=~/.favoritos
 Browser="exo-open --launch WebBrowser"
-Fzfopt="-e --color=16 --tiebreak=begin --border -i"
+Fzfopt="fzf -e --color=16 --tiebreak=begin --border -i"
 
 # Pegar favoritos do Firefox (Vá em Opções, Biblioteca, Favoritos, Mostrar todos os favoritos (Ctrl+Shft+O), Vá em Opções, Exportar favoritos e salve em um arquivo com o nome de ".favoritos")
 
 while :; do
 	Site=$(sed -r '/http/!d;s/^.*HREF="(.*)" ADD_DATE=.*">(.*)<\/A>.*$/\2𤭢┃\1/' $Bookmarks \
 		| column -t -s "𤭢" \
-		| fzf $Fzfopt \
+		| $Fzfopt \
 		| sed 's/#Porn.*┃\|#Hentai.*┃/┃--private-window /' \
 		| sed 's/^.*┃//')
 	if [[ $Site ]]; then
-		$Browser $Site &
+		$Browser "$Site" &
 		break
 	else
 		break
