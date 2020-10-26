@@ -1,13 +1,15 @@
 #!/bin/env bash
 
 # Obrigado Blau Araujo (debxp)!
+# https://www.youtube.com/watch?v=uIQzu10Giiw
 
-fzfopt="fzf -e --color=16 --tiebreak=begin --border -i --prompt=Application:"
+Fzfopt="fzf -e --color=16 --tiebreak=begin --border -i --prompt=Application:"
 
-launchers=(
+Launchers=(
 	"/usr/share/applications/*.desktop"
 	"$HOME/.local/share/applications/*.desktop"
 	"/usr/local/share/applications/*.desktop"
+	"$HOME/.local/share/flatpak/exports/share/applications/*.desktop"
 )
 
 _desktop_files(){
@@ -51,7 +53,7 @@ _desktop_files(){
 			if ($0 ~ /^Exec=/) cmd = $0
 			if ($0 ~ /NoDisplay=true/) show_launcher = 0
 		}
-	}' ${launchers[@]} | awk -F'┃' '{
+	}' ${Launchers[@]} | awk -F'┃' '{
 	name = ""
 	cmt  = ""
 	cmd  = ""
@@ -65,7 +67,7 @@ _desktop_files(){
 }
 
 while :; do
-	Command=$(_desktop_files | column -t -s "𤭢" | sort | $fzfopt | sed 's/^.*┃//' | sed 's/ %.*$//')
+	Command=$(_desktop_files | column -t -s "𤭢" | sort | $Fzfopt | sed 's/^.*┃//' | sed 's/ %.*$//')
 
 	if [[ $Command ]]; then
 		$Command &
