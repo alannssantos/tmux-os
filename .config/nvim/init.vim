@@ -79,7 +79,7 @@ map q :bw<CR>
 map sc :!clear && shellcheck %<CR>
 map rf :!clear && ./%<CR>
 map <C-f> :FZF -e<CR>
-map <C-t> :Buffers<CR>
+map <C-t> :!tmux split-window -v -p 20<CR>
 map <Tab> :bn<CR>
 
 " Copiar e Colar X11
