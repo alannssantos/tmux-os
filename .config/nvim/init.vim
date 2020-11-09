@@ -76,11 +76,12 @@ set confirm
 
 " Maps
 map q :bw<CR>
-map sc :!clear && shellcheck %<CR>
-map rf :!clear && ./%<CR>
-map <C-f> :FZF -e<CR>
-map <C-t> :!tmux split-window -v -p 20<CR>
 map <Tab> :bn<CR>
+map <C-f> :FZF -e<CR>
+map <leader>sc :!clear && shellcheck %<CR>
+map <leader>rf :!clear && ./%<CR>
+map <leader>nl :%s/^/\=printf('%04d', line('.'))<CR>
+map <leader>t :!tmux split-window -v -p 20<CR>
 
 " Copiar e Colar X11
 vmap <C-c> :!xclip -f -sel clip<CR>
