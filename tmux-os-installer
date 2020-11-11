@@ -67,7 +67,6 @@ case "$Resposta" in
 		streamlink \
 		irssi \
 		peek \
-		youtube-dl \
 		simple-scan \
 		numix-gtk-theme \
                 numix-icon-theme \
@@ -92,8 +91,9 @@ case "$Resposta" in
 	npm config set prefix $HOME/.local && \
 	pip3 install ranger-fm && \
 	pip3 install stig && \
-	pip3 install youtube-dl --upgrade && \
-	pip3 install subliminal --upgrade && \
+	pip3 install mangascandl && \
+	pip3 install youtube-dl && \
+	pip3 install subliminal && \
         pip3 install flexget==3.1.50 && \
 	pip3 install ueberzug && \
 	pip3 install transmissionrpc && \
