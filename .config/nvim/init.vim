@@ -28,7 +28,7 @@ call plug#begin('~/.config/nvim/plugged')
 	Plug 'jiangmiao/auto-pairs'
 	Plug 'ntpeters/vim-better-whitespace'
 	Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & npm install'  }
-	
+
 	" ==== File tree
 	Plug 'ryanoasis/vim-devicons'
 	Plug 'junegunn/fzf'

@@ -24,6 +24,7 @@ tasks:
       - rss: https://mangadex.org/rss/gvKM3hsdH9pe6AwZC8RQqarbNnutykYX/manga_id/21040
       - rss: https://mangadex.org/rss/gvKM3hsdH9pe6AwZC8RQqarbNnutykYX/manga_id/32386
       - rss: https://mangadex.org/rss/gvKM3hsdH9pe6AwZC8RQqarbNnutykYX/manga_id/24249
+    accept_all: yes
     exec: echo " | $(date '+%d/%m/%Y %H:%M:%S') | {{title}} | {{url}} |" >> ~/Update\ Mangas\ History.md ; gallery-dl {{url}} &
   Animes:
     sequence:
@@ -42,6 +43,9 @@ tasks:
       - rss: https://yts.mx/rss/F9/all/all/0/en
       - rss: https://yts.mx/rss/black%20widow/all/all/0/en
       - rss: https://yts.mx/rss/Wonder%20Woman%201984/all/all/0/en
+      - rss: https://yts.mx/rss/Tenet/all/all/0/en
+      - rss: https://yts.mx/rss/Dune/all/all/0/en
+      - rss: https://yts.mx/rss/A%20Quiet%20Place/all/all/0/en
     regexp:
       accept:
         - (BluRay|WEB|1080p).*(BluRay|WEB|1080p)
@@ -58,9 +62,9 @@ tasks:
       - rss: https://showrss.info/show/651.rss
       - rss: https://showrss.info/show/1296.rss
       - rss: https://showrss.info/show/1283.rss
-      - rss: https://showrss.info/show/1112.rss
       - rss: https://showrss.info/show/1338.rss
       - rss: https://showrss.info/show/1183.rss
+      - rss: https://showrss.info/show/1359.rss
     regexp:
       accept:
         - (1080p)

@@ -54,6 +54,9 @@ case "$Resposta" in
 		redshift \
 		alsa-utils \
 		mpv \
+		mpc \
+		mpd \
+		ncmpcpp \
 		atool \
 		python3-pip \
 		mpg123 \

@@ -11,7 +11,7 @@ tmux_bar_inst(){
 #### Transmission
 Torrent=$(stig ls \
 	| awk '{print $7" "$9}' \
-	| sed 's/.*seeding.*\|.*uploading.*/#\[fg=green\] 🌱/g;
+	| sed 's/.*seeding.*\|.*uploading.*/#\[fg=green\] 🌱/g
 		s/.*100.*/#\[fg=blue\] ✅/g
 		s/.*stopped.*/#\[fg=red\] 🔴/g
 		s/.*connected.*\|.*idle.*\|.*discovering.*\|.*queued.*/#\[fg=yellow\] ⌛️/g
@@ -33,15 +33,14 @@ NManga=$(grep -c "$Date" "$File")
 [ "$NManga" = 0 ] && echo -n "" || echo -n " #[fg=green]┃ #[fg=blue]Manga: $NManga"
 ####━━━━━━━━━━━━
 
-#### Moc Player
-Player=$(mocp -i \
-	| sed '/^SongTitle:\|^Artist:/!d' \
-	| sed 'N;s/\nSongTitle: / - /;s/Artist: / #[fg=green]┃ 🎵 /')
+#### Mpc Player
+Player=$(mpc -f "[[%artist% - ]%title%]|[%file$]" 2>/dev/null \
+	| sed -r '1!d;s/(.* )-( .*)/ #[fg=green]┃ 🎵 \1-#[fg=magenta]\2/')
 echo -n "$Player"
 ####━━━━━━━━━━
 
 #### Temperatura CPU
-Temp=$(sensors | sed '/Package id 0:/!d;s/°C.*$/°C/;s/^.*+/ #[fg=green]┃ 🌡️ /')
+Temp=$(sensors | sed -r '/Package id 0:/!d;s/.*\+(.*)\..°C *\(.*$/ #[fg=green]┃ 🌡️ \1°C/')
 echo -n "$Temp"
 ####━━━━━━━━━━━━━━━
 
