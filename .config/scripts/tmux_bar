@@ -35,6 +35,7 @@ NManga=$(grep -c "$Date" "$File")
 
 #### Mpc Player
 Player=$(mpc -f "[[%artist% - ]%title%]|[%file$]" 2>/dev/null \
+	| grep -v 'volume:' \
 	| sed -r '1!d;s/(.* )-( .*)/ #[fg=green]┃ 🎵 \1-#[fg=magenta]\2/')
 echo -n "$Player"
 ####━━━━━━━━━━
