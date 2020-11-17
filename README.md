@@ -20,6 +20,18 @@
 */30  *     *    * *    alann   /usr/local/bin/flexget execute > /tmp/dtest_erro.log 2>&1
 ```
 
+#### Ip Fixo `/etc/network/interfaces`.
+```
+# Configuração de IP Fixo
+auto enp2s0
+allow-hotplug enp2s0
+iface enp2s0 inet static
+        address 192.168.0.132
+        netmask 255.255.255.0
+        network 192.168.0.1
+        broadcast 192.168.0.255
+        gateway 192.168.0.1
+```
 #### Ativar o Bluetooth.
 
 ```
@@ -28,7 +40,7 @@ $ sudo systemctl restart bluetooth
 $ systemctl status bluetooth
 ```
 
-#### Configurar Transmission
+#### Configurar Transmission.
 
 * Desabilitar (Mostrar o diálogo "Opção de torrent")
 * Habilitar (Permitir acesso remoto)
