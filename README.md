@@ -39,7 +39,10 @@ $ sudo systemctl enable bluetooth
 $ sudo systemctl restart bluetooth
 $ systemctl status bluetooth
 ```
-
+#### Instalar Pipy direto do github
+```
+$ pip3 install git+https://github.com/alannssantos/mangascandl.git
+```
 #### Configurar Transmission.
 
 * Desabilitar (Mostrar o diálogo "Opção de torrent")
