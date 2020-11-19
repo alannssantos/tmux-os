@@ -39,7 +39,7 @@ $ sudo systemctl enable bluetooth
 $ sudo systemctl restart bluetooth
 $ systemctl status bluetooth
 ```
-#### Instalar Pipy direto do github
+#### Instalar PyPi direto do Github.
 ```
 $ pip3 install git+https://github.com/alannssantos/mangascandl.git
 ```
