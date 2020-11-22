@@ -80,7 +80,7 @@ map <Tab> :bn<CR>
 map <C-f> :FZF -e<CR>
 map <leader>sc :!clear && shellcheck %<CR>
 map <leader>rf :!clear && ./%<CR>
-map <leader>nl :%s/^/\=printf('%04d', line('.'))<CR>
+map <leader>nl :%s/^/\=printf('%03d', line('.'))<CR>
 map <leader>t :!tmux split-window -v -p 20<CR>
 
 " Copiar e Colar X11
