@@ -44,12 +44,6 @@ echo -n "$Player"
 Temp=$(sensors | sed -r '/Package id 0:/!d;s/.*\+(.*)\..°C *\(.*$/ #[fg=green]┃ 🌡️ \1°C/')
 echo -n "$Temp"
 ####━━━━━━━━━━━━━━━
-
-#### Internet
-Internet=$(sed '/up\|down/!d;s/down//;s/up/ #[fg=green]┃ 🌐/' /sys/class/net/*/operstate \
-	| sed ':a;$!N;s/\n/ /;ta;')
-echo -n "$Internet"
-####━━━━━━━━
 }
 
 ####### Atualiza a Cada Minuto #######
