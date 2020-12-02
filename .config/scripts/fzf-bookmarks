@@ -12,15 +12,15 @@ Fzfopt="fzf -e --color=16 --tiebreak=begin --border -i"
 #
 
 while :; do
-        Site=$(sed -r '/http/!d;s/^.*HREF="(.*)" ADD_DATE=.*">(.*)<\/A>.*$/\2𤭢┃\1/' $Bookmarks \
-                | column -t -s "𤭢" \
-                | $Fzfopt \
-                | sed 's/#Porn.*┃\|#Hentai.*┃/┃--private-window /' \
-                | sed 's/^.*┃//')
-        if [[ $Site ]]; then
-                $Browser "$Site" &
-                break
-        else
-                break
-        fi
+	Site=$(sed -r '/http/!d;s/^.*HREF="(.*)" ADD_DATE=.*">(.*)<\/A>.*$/\2𤭢┃\1/' $Bookmarks \
+		| column -t -s "𤭢" \
+		| $Fzfopt \
+		| sed 's/#Porn.*┃\|#Hentai.*┃/┃--private-window /' \
+		| sed 's/^.*┃//')
+	if [[ $Site ]]; then
+		$Browser "$Site" &
+		break
+	else
+		break
+	fi
 done
