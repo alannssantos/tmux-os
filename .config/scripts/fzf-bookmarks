@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 Bookmarks=~/.favoritos
-Browser="exo-open --launch WebBrowser"
+Browser="firefox"
 Fzfopt="fzf -e --color=16 --tiebreak=begin --border -i"
 
 # Pegar favoritos do Firefox Automaticamente.
@@ -18,7 +18,7 @@ while :; do
 		| sed 's/#Porn.*┃\|#Hentai.*┃/┃--private-window /' \
 		| sed 's/^.*┃//')
 	if [[ $Site ]]; then
-		$Browser "$Site" &
+		$Browser $Site &
 		break
 	else
 		break
