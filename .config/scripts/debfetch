@@ -16,8 +16,7 @@ cols=$(tput cols)
 . /etc/os-release
 
 # Extra Info
-Internet=$(sed "/up\|down/!d;s/down/$RCor Offline/;s/up/$GCor Online/" /sys/class/net/*/operstate \
-        | sed ':a;$!N;s/\n/ /;ta;')
+Internet=$(cat < /dev/null > /dev/tcp/8.8.8.8/53 && echo "$GCor Online" || echo "$RCor Offline")
 
 # Main...
 
