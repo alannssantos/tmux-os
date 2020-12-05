@@ -30,7 +30,7 @@ $ECor"
 Menu(){
 echo -e "$BCor
     1.Sistema
-    2.Bat e Google Chrome
+    2.Bat e Dragon
     3.Fuzzy Finder
     4.Nerd Fonts e Ranger config $YCor(pode demorar bastante tempo.)$BCor
     5.Configs
@@ -111,17 +111,16 @@ case "$Resposta" in
         url2=$(wget -qO- "https://github.com/sharkdp/bat/releases" \
 		| sed -r '/bat_.*_amd64.deb/!d;s/^.*href="(.*)" rel=.*$/\1/' \
 		| sed '1!d')
-        wget -c "$url1$url2" && \
+	wget -c "$url1$url2" && \
         sudo dpkg -i bat_*_amd64.deb && \
         echo -e "$BCor\n02.Instalacao do Bat!$ECor" && \
         echo -e "$Sussesso" || \
         echo -e "$Fracasso"
 
-        #### Google Chrome.
-        wget -c https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && \
-        sudo dpkg -i google-chrome-stable_current_amd64.deb && \
-        sudo apt install -f && \
-        echo -e "$BCor\n02.Google Chrome.$ECor" && \
+        #### Dragon (drag and drop pelo terminal).
+        git clone https://github.com/mwh/dragon.git && \
+        cd dragon && make && make install && \
+        echo -e "$BCor\n02.Instalacao do Dragon.$ECor" && \
         echo -e "$Sussesso" || \
         echo -e "$Fracasso"
         Menu ;;
