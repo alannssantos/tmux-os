@@ -29,136 +29,133 @@ $ECor"
 
 Menu(){
 echo -e "$BCor
-    1.Sistema
-    2.Bat e Dragon
-    3.Fuzzy Finder
-    4.Nerd Fonts e Ranger config $YCor(pode demorar bastante tempo.)$BCor
-    5.Configs
+	1.Sistema
+	2.Bat e Dragon
+	3.Fuzzy Finder
+	4.Nerd Fonts e Ranger config $YCor(pode demorar bastante tempo.)$BCor
+	5.Configs
 $ECor"
 read -r Resposta
 
 case "$Resposta" in
-    1)
-        #### Aplicativos e Drivers Pos-instalação.
-        sudo apt install gparted \
-		libjpeg62-turbo-dev \
-		zlib1g-dev \
-		python3-dev \
-		libxtst-dev \
-		curl \
-		slop \
-		lynx \
-		fonts-firacode \
-		sxiv \
-		font-manager \
-		redshift \
-		alsa-utils \
-		mpv \
-		mpc \
-		mpd \
-		ncmpcpp \
-		atool \
-		python3-pip \
-		mpg123 \
-		pavucontrol \
-		neovim \
-		zathura \
-		rar \
-		ffmpegthumbnailer \
-		w3m-img \
-		neomutt \
-		streamlink \
-		irssi \
-		peek \
-		simple-scan \
-		numix-gtk-theme \
-                numix-icon-theme \
-                numix-icon-theme-circle \
-		ttf-mscorefonts-installer \
-		papirus-icon-theme \
-		arc-theme \
-		breeze-cursor-theme \
-		blueman \
-		keepassxc \
-		tmux \
-		npm \
-		cmake \
-		smplayer \
-		xdotool \
-		transmission-gtk \
-		xfce4-terminal \
-		python3-libtorrent -y && \
+	1)
+		#### Aplicativos e Drivers Pos-instalação.
+		sudo apt install gparted \
+			libjpeg62-turbo-dev \
+			zlib1g-dev \
+			python3-dev \
+			libxtst-dev \
+			curl \
+			slop \
+			lynx \
+			fonts-firacode \
+			sxiv \
+			font-manager \
+			redshift \
+			alsa-utils \
+			mpv \
+			mpc \
+			mpd \
+			ncmpcpp \
+			atool \
+			python3-pip \
+			mpg123 \
+			pavucontrol \
+			neovim \
+			zathura \
+			rar \
+			ffmpegthumbnailer \
+			w3m-img \
+			neomutt \
+			streamlink \
+			irssi \
+			peek \
+			simple-scan \
+			numix-gtk-theme \
+			numix-icon-theme \
+			numix-icon-theme-circle \
+			ttf-mscorefonts-installer \
+			papirus-icon-theme \
+			arc-theme \
+			breeze-cursor-theme \
+			blueman \
+			keepassxc \
+			tmux \
+			npm \
+			cmake \
+			smplayer \
+			xdotool \
+			transmission-gtk \
+			xfce4-terminal \
+			python3-libtorrent -y && \
 #
-	sudo apt update && \
-	sudo apt upgrade -y && \
-	npm config set prefix $HOME/.local && \
-	pip3 install ranger-fm && \
-	pip3 install stig && \
-	pip3 install mangascandl && \
-	pip3 install youtube-dl && \
-	pip3 install subliminal && \
-        pip3 install flexget==3.1.50 && \
-	pip3 install ueberzug && \
-	pip3 install transmissionrpc && \
-	pip3 install gallery-dl && \
-	echo -e "$BCor\n01.Sistema!$ECor" && \
-        echo -e "$Sussesso" || \
-        echo -e "$Fracasso"
-        Menu ;;
-    2)
-        #### Bat (cat mais bonito.)
-        url1="https://github.com"
-        url2=$(wget -qO- "https://github.com/sharkdp/bat/releases" \
-		| sed -r '/bat_.*_amd64.deb/!d;s/^.*href="(.*)" rel=.*$/\1/' \
-		| sed '1!d')
-	wget -c "$url1$url2" && \
-        sudo dpkg -i bat_*_amd64.deb && \
-        echo -e "$BCor\n02.Instalacao do Bat!$ECor" && \
-        echo -e "$Sussesso" || \
-        echo -e "$Fracasso"
+		sudo apt update && \
+		sudo apt upgrade -y && \
+		npm config set prefix $HOME/.local && \
+		pip3 install ranger-fm && \
+		pip3 install stig && \
+		pip3 install mangascandl && \
+		pip3 install youtube-dl && \
+		pip3 install subliminal && \
+		pip3 install flexget==3.1.50 && \
+		pip3 install ueberzug && \
+		pip3 install transmissionrpc && \
+		pip3 install gallery-dl && \
+		echo -e "$BCor\n01.Sistema!$ECor" && \
+		echo -e "$Sussesso" || \
+		echo -e "$Fracasso"
+		Menu ;;
+	2)
+		#### Bat (cat mais bonito.)
+		url1="https://github.com"
+		url2=$(wget -qO- "https://github.com/sharkdp/bat/releases" \
+			| sed -r '/bat_.*_amd64.deb/!d;s/^.*href="(.*)" rel=.*$/\1/' \
+			| sed '1!d')
+		wget -c "$url1$url2" -P /tmp/ && \
+		sudo dpkg -i /tmp/bat_*_amd64.deb && \
+		echo -e "$BCor\n02.Instalacao do Bat!$ECor" && \
+		echo -e "$Sussesso" || \
+		echo -e "$Fracasso"
 
-        #### Dragon (drag and drop pelo terminal).
-        git clone https://github.com/mwh/dragon.git && \
-        cd dragon && make && make install && \
-        echo -e "$BCor\n02.Instalacao do Dragon.$ECor" && \
-        echo -e "$Sussesso" || \
-        echo -e "$Fracasso"
-        Menu ;;
-
-    3)
-        #### Instalação do Fuzzy Finder.
-        git clone --depth 1 https://github.com/junegunn/fzf.git ~/.config/fzf && ~/.config/fzf/install --all && \
-        echo -e "$BCor\n03.Instalacao do Fuzzy Finder$ECor" && \
-        echo -e "$Sussesso" || \
-        echo -e "$Fracasso"
-        Menu ;;
-
-    4)
-        #### Nerd Fonts e Ranger config.
-        git clone https://github.com/ryanoasis/nerd-fonts.git && cd nerd-fonts && ./install.sh && \
-        git clone https://github.com/alexanderjeurissen/ranger_devicons ~/.config/ranger/plugins/ranger_devicons && cd ~/.config/ranger/plugins/ranger_devicons && make install && \
-        echo -e "$BCor\n04.Nerd Fonts e Ranger config.$ECor" && \
-        echo -e "$Sussesso" || \
-        echo -e "$Fracasso"
-        Menu ;;
-    5)
-        #### Copiar Dotfiles e Plugins.
-        cp -r -v .config .irssi .bash_aliases .nanorc .tmux.conf .Xresources ~/ && \
-        echo -e "$BCor\n05.Copiando arquivos de configuração...$ECor" && \
-        echo -e "$Sussesso" || \
-        echo -e "$Fracasso"
-        Menu ;;
-    q)
-        exit ;;
-    *)
-        clear
-        echo -e "$YCor
+		#### Dragon (drag and drop pelo terminal).
+		git clone https://github.com/mwh/dragon.git /tmp/dragon && cd /tmp/dragon && make && make install && \
+		echo -e "$BCor\n02.Instalacao do Dragon.$ECor" && \
+		echo -e "$Sussesso" || \
+		echo -e "$Fracasso"
+		Menu ;;
+	3)
+		#### Instalação do Fuzzy Finder.
+		git clone --depth 1 https://github.com/junegunn/fzf.git ~/.config/fzf && ~/.config/fzf/install --all && \
+		echo -e "$BCor\n03.Instalacao do Fuzzy Finder$ECor" && \
+		echo -e "$Sussesso" || \
+		echo -e "$Fracasso"
+		Menu ;;
+	4)
+		#### Nerd Fonts e Ranger config.
+		git clone https://github.com/ryanoasis/nerd-fonts.git && cd nerd-fonts && ./install.sh && \
+		git clone https://github.com/alexanderjeurissen/ranger_devicons ~/.config/ranger/plugins/ranger_devicons && cd ~/.config/ranger/plugins/ranger_devicons && make install && \
+		echo -e "$BCor\n04.Nerd Fonts e Ranger config.$ECor" && \
+		echo -e "$Sussesso" || \
+		echo -e "$Fracasso"
+		Menu ;;
+	5)
+		#### Copiar Dotfiles e Plugins.
+		cp -r -v .config .irssi .bash_aliases .nanorc .tmux.conf .Xresources ~/ && \
+		echo -e "$BCor\n05.Copiando arquivos de configuração...$ECor" && \
+		echo -e "$Sussesso" || \
+		echo -e "$Fracasso"
+		Menu ;;
+	q)
+		exit ;;
+	*)
+		clear
+		echo -e "$YCor
 
         ╭────────────────────────╮
         │$RCor   Opção desconhecida.$YCor  │
         ╰────────────────────────╯
             $ECor"
-        Menu ;;
+	Menu ;;
 esac
 }
 Menu
