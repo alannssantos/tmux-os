@@ -52,7 +52,6 @@ export LESS_TERMCAP_us=$'\e[1;4;31m'
 #### Mostrar arquivos ocultos com FZF e abri com o aplcativo padrão pra determinado arquivo.
 export FZF_DEFAULT_COMMAND='find /home /media /mnt'
 
-bind '"\C-F":"finder\n"'
 bind '"\C-X":"tmux attach || tmux\n"'
 bind '"\C-G":"$(fzf -e)\n"'
 
