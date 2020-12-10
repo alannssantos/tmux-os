@@ -30,8 +30,8 @@ $ECor"
 Menu(){
 echo -e "$BCor
 	1.Sistema
-	2.Bat e Dragon
-	3.Fuzzy Finder
+	2.Bat e Touchegg
+	3.Fuzzy Finder e Dragon
 	4.Nerd Fonts e Ranger config $YCor(pode demorar bastante tempo.)$BCor
 	5.Configs
 $ECor"
@@ -112,14 +112,19 @@ case "$Resposta" in
 			| sed -r '/bat_.*_amd64.deb/!d;s/^.*href="(.*)" rel=.*$/\1/' \
 			| sed '1!d')
 		wget -c "$url1$url2" -P /tmp/ && \
-		sudo dpkg -i /tmp/bat_*_amd64.deb && \
+		sudo apt install /tmp/bat_*_amd64.deb && \
 		echo -e "$BCor\n02.Instalacao do Bat!$ECor" && \
 		echo -e "$Sussesso" || \
 		echo -e "$Fracasso"
 
-		#### Dragon (drag and drop pelo terminal).
-		git clone https://github.com/mwh/dragon.git /tmp/dragon && cd /tmp/dragon && make && make install && \
-		echo -e "$BCor\n02.Instalacao do Dragon.$ECor" && \
+		#### Touchegg (mais funções no touchpad.)
+		url1="https://github.com"
+		url2=$(wget -qO- "https://github.com/JoseExposito/touchegg/releases" \
+			| sed -r '/touchegg_.*_amd64.deb/!d;s/^.*href="(.*)" rel=.*$/\1/' \
+			| sed '1!d')
+		wget -c "$url1$url2" -P /tmp/ && \
+		sudo apt install /tmp/touchegg_*_amd64.deb && \
+		echo -e "$BCor\n02.Instalacao do Touchegg!$ECor" && \
 		echo -e "$Sussesso" || \
 		echo -e "$Fracasso"
 		Menu ;;
@@ -127,6 +132,12 @@ case "$Resposta" in
 		#### Instalação do Fuzzy Finder.
 		git clone --depth 1 https://github.com/junegunn/fzf.git ~/.config/fzf && ~/.config/fzf/install --all && \
 		echo -e "$BCor\n03.Instalacao do Fuzzy Finder$ECor" && \
+		echo -e "$Sussesso" || \
+		echo -e "$Fracasso"
+
+		#### Dragon (drag and drop pelo terminal).
+		git clone https://github.com/mwh/dragon.git /tmp/dragon && cd /tmp/dragon && make && make install && \
+		echo -e "$BCor\n02.Instalacao do Dragon.$ECor" && \
 		echo -e "$Sussesso" || \
 		echo -e "$Fracasso"
 		Menu ;;
