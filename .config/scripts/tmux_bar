@@ -41,7 +41,7 @@ echo -n "$Player"
 #### ━━━━━━━━━━
 
 #### Temperatura CPU
-Temp=$(sensors | sed -r '/Package id 0:/!d;s/.*\+(.*)\..°C *\(.*$/ #[fg=colour71]┃ 🌡️ \1°C/')
+Temp=$(sensors | sed -r '/Package id 0:/!d;s/.*\+(.*)\..°C *\(.*$/ #[fg=colour71]┃ \1°C/')
 echo -n "$Temp"
 #### ━━━━━━━━━━━━━━━
 }
