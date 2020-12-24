@@ -43,7 +43,8 @@ $ systemctl status bluetooth
 ```
 $ pip3 install git+https://github.com/alannssantos/mangascandl.git
 ```
-#### Configurar Transmission.
+#### Configurar Qbittorrent.
 
-* Desabilitar (Mostrar o diálogo "Opção de torrent")
-* Habilitar (Permitir acesso remoto)
+* Ativar Interface Web do Usuário (Controle Remoto).
+* Modificar os caminhos no aquivo RSS `~/.config/Qbittorrent/rss/download_rules.json`.
+* Mudar port para 7777 para o script `~/.config/script/qbit.py`.

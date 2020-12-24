@@ -25,7 +25,7 @@ home(){
 
 if [ -z "$r" ] ; then
 	echo -n ""
-else	
+else
 	Player=$(echo -e "1) SMPlayer\n2) Chromecast" | fzf --color=16 --border --no-info --phony | sed 's/) .*$//')
 	if [ -z "$Player" ] ; then
 		echo -n ""
@@ -85,7 +85,7 @@ else
 
 	if [ -z "$r" ] ; then
 		echo -n ""
-	else	
+	else
 		Player=$(echo -e "1) SMPlayer\n2) Chromecast" | fzf --color=16 --border --no-info --phony | sed 's/) .*$//')
 		if [ -z "$Player" ] ; then
 			echo -n ""
@@ -118,7 +118,7 @@ anime_list(){
 		| sed 's/\" href=\"/𤭢┃ /;s/">.*$//' \
 		| column -t -s "𤭢" > /tmp/goyabu_anime_list \
 	&& link=$(fzf $fzfopt < /tmp/goyabu_anime_list | sed 's/^.*┃ //')
-	
+
 	if [ -z "$link" ] ; then
 		echo -n ""
 	else
@@ -132,7 +132,7 @@ anime_list(){
 
 		if [ -z "$r" ] ; then
 			echo -n ""
-		else	
+		else
 			Player=$(echo -e "1) SMPlayer\n2) Chromecast" | fzf --color=16 --border --no-info --phony | sed 's/) .*$//')
 			if [ -z "$Player" ] ; then
 				echo -n ""
@@ -142,7 +142,7 @@ anime_list(){
 						${program[0]} "$(wget -qO- "$r" \
 							| sed '/file: \"/!d' \
 							| sed 's/\"}.*$// ; s/^.*file: \"//')" ;;
-					2)	
+					2)
 						if [ -z "$(command -v stream2chromecast)" ]; then
 						        echo -e "Instale \"Stream2Chromecast\" para poder transmitir para o Chromecast"
 						else
@@ -161,7 +161,7 @@ anime_list(){
 }
 
 case $1 in
-	--help|-h|"") 
+	--help|-h|"")
 		echo -e "Goyabu v2.0 - Criado por Alann Santos.
 Usage: goyabu [options]
 
@@ -195,6 +195,6 @@ Options:
 					fi ;;
 			esac
 		fi ;;
-	-p|-P) 
+	-p|-P)
 		anime_list ;;
 esac

@@ -1,0 +1,44 @@
+{
+    "Animes": {
+        "addPaused": null,
+        "affectedFeeds": [
+        ],
+        "assignedCategory": "",
+        "enabled": true,
+        "episodeFilter": "",
+        "ignoreDays": 0,
+        "lastMatch": "19 Nov 2019 11:27:40 +0000",
+        "mustContain": "720p HorribleSubs",
+        "mustNotContain": "",
+        "savePath": "",
+        "useRegex": false
+    },
+    "Filmes": {
+        "addPaused": null,
+        "affectedFeeds": [
+        ],
+        "assignedCategory": "",
+        "enabled": true,
+        "episodeFilter": "",
+        "ignoreDays": 0,
+        "lastMatch": "",
+        "mustContain": "1080p BluRay | WEB",
+        "mustNotContain": "3D | 720p",
+        "savePath": "/media/Stronger/Plex/Filmes",
+        "useRegex": false
+    },
+    "Series": {
+        "addPaused": null,
+        "affectedFeeds": [
+        ],
+        "assignedCategory": "",
+        "enabled": true,
+        "episodeFilter": "",
+        "ignoreDays": 0,
+        "lastMatch": "",
+        "mustContain": "1080p",
+        "mustNotContain": "Repack",
+        "savePath": "/media/Stronger/Plex/Series",
+        "useRegex": false
+    }
+}

@@ -15,8 +15,5 @@
 #### Temperatura da tela
 redshift -l -6.265936:-35.210228 &
 
-#### Iniciar Transmission
-transmission-gtk -m &
-
 #### Telegram
 telegram-desktop -startintray &

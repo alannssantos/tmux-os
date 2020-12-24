@@ -2,7 +2,7 @@
 
 #### Requisitos
 ```
-$ sudo -H pip3 install flexget==3.1.50
+$ pip3 install flexget==3.1.50
 $ sudo apt install python3-libtorrent
 $ pip3 install transmissionrpc
 ```
