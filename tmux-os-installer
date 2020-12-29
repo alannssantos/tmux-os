@@ -59,6 +59,7 @@ case "$Resposta" in
 			ncmpcpp \
 			atool \
 			python3-pip \
+			python-pip \
 			mpg123 \
 			pavucontrol \
 			neovim \
@@ -95,7 +96,7 @@ case "$Resposta" in
 		pip3 install ranger-fm && \
 		pip3 install mangascandl && \
 		pip3 install youtube-dl && \
-		pip3 install subliminal && \
+		pip install subliminal && \
 		pip3 install flexget==3.1.50 && \
 		pip3 install ueberzug && \
 		pip3 install python-qbittorrent && \
