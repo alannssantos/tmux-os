@@ -1,12 +1,12 @@
 #### Variaveis.
-RCor="\[$(tput bold)$(tput setaf 1)\]"	# Red (Vermelho)
-GCor="\[$(tput bold)$(tput setaf 2)\]"	# Green (Verde)
-YCor="\[$(tput bold)$(tput setaf 3)\]"	# Yellow (Amarelo)
-BCor="\[$(tput bold)$(tput setaf 4)\]"	# Blue (Azul)
-PCor="\[$(tput bold)$(tput setaf 5)\]"	# Purple (Roxo)
-CCor="\[$(tput bold)$(tput setaf 6)\]"	# Cyan (Turquesa)
-WCor="\[$(tput bold)$(tput setaf 7)\]"	# White (Branco)
-ECor="\[$(tput sgr0)\]"			# End (Fim)
+RCor="\[\033[1;31m\]"   # Red (Vermelho)
+GCor="\[\033[1;32m\]"   # Green (Verde)
+YCor="\[\033[1;33m\]"   # Yellow (Amarelo)
+BCor="\[\033[1;34m\]"   # Blue (Azul)
+PCor="\[\033[1;35m\]"   # Purple (Roxo)
+CCor="\[\033[1;36m\]"   # Cyan (Turquesa)
+WCor="\[\033[1;37m\]"   # White (Branco)
+ECor="\[\033[0m\]"      # End (Fim)
 
 #### Começo da Funções git status.
 gitB() { git branch 2>&1 | tee | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/' | sed 's/^/ \[/;s/$/\] /' ;}
