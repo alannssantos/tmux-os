@@ -1,6 +1,6 @@
 #!/bin/bash
 # dependencies: mpv youtube-dl fzf rofi/dmenu
-# search videos and playlists on youtube and play them in mpv, without an API 
+# search videos and playlists on youtube and play them in mpv, without an API
 # usage:
 # yt					asks for input in stdin, prompts using fzf
 # yt search query		takes input from the passed arg, prompts using fzf
@@ -9,7 +9,6 @@
 player="mpv --ontop --no-border --force-window --autofit=500x280 --geometry=-15-60"
 defcmd="fzf -e --color=16 --tiebreak=begin --border -i"
 guicmd="rofi -dmenu -i" #uncomment next line for dmenu
-#guicmd="dmenu -i -l 15"
 promptcmd="$defcmd"
 if [ -z "$*" ]; then
 	echo -n "Search: "
