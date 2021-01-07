@@ -14,15 +14,16 @@ Torrent=$(~/.config/scripts/qbit.py \
 	| uniq -c \
 	| sed 's/^ *//' \
 	| sed -r 's/(.*) pausedDL.*/#[fg=colour1] \1🔴/g
+		s/(.*) missingFiles.*/#[fg=colour1] \1❗/g
 		s/(.*) pausedUP.*/#[fg=colour4] \1✅/g
-		s/.*downloading (.*)/#[fg=colour5] 📥[\1%]/g
 		s/(.*) stalledUP.*/#[fg=colour71] \1🌱/g
 		s/(.*) uploading.*/#[fg=colour71] \1📤/g
 		s/(.*) stalledDL.*/#[fg=colour5] \1⌛️/g
 		s/(.*) queuedUP.*/#[fg=colour11] \1📎/g
+		s/(.*) metaDL.*/#[fg=colour6] \1⌛️/g
+		s/.*downloading (.*)/#[fg=colour5] 📥[\1%]/g
 		s/.*moving (.*)/#[fg=colour6] 🗂[\1%]/g
-		s/.*checkingUP (.*)/#[fg=colour11] ⌛️[\1%]/g
-		s/(.*) metaDL.*/#[fg=colour6] \1⌛️/g' \
+		s/.*checkingUP (.*)/#[fg=colour11] ⌛️[\1%]/g' \
 	| sed ':a;$!N;s/\n//;ta;' \
 	| sed 's/^/ #[fg=colour71]┃/')
 echo -n "$Torrent"
