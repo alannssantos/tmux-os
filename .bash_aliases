@@ -8,6 +8,8 @@ CCor="\[\033[1;36m\]"   # Cyan (Turquesa)
 WCor="\[\033[1;37m\]"   # White (Branco)
 ECor="\[\033[0m\]"      # End (Fim)
 
+EDITOR=nvim
+
 #### Começo da Funções git status.
 gitB() { git branch 2>&1 | tee | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/' | sed 's/^/ \[/;s/$/\] /' ;}
 gitH() { git status 2>&1 | tee | sed '/Your branch is ahead of/!d' | sed 's/.*.//' ;}
