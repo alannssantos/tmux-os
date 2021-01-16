@@ -18,21 +18,22 @@ endif
 call plug#begin('~/.config/nvim/plugged')
 
 	" ==== Themes
+	Plug 'morhetz/gruvbox' " Gruvbox Theme
 	Plug 'vim-airline/vim-airline'		" Airline
 	Plug 'vim-airline/vim-airline-themes'	" Airline Themes
-	Plug 'ap/vim-css-color'
-
-	" ==== Python Syntax
-	Plug 'vim-python/python-syntax'
-	Plug 'valloric/youcompleteme'
-	Plug 'jiangmiao/auto-pairs'
-	Plug 'ntpeters/vim-better-whitespace'
-	Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & npm install'  }
-
-	" ==== File tree
 	Plug 'ryanoasis/vim-devicons'
+
+	" ==== Syntax
+	Plug 'sheerun/vim-polyglot'
+	Plug 'neoclide/coc.nvim', {'branch': 'release'}
+	Plug 'ntpeters/vim-better-whitespace'
+	Plug 'preservim/nerdcommenter'
+
+	" ==== Utility
 	Plug 'junegunn/fzf'
 	Plug 'junegunn/fzf.vim'
+	Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & npm install'  }
+	Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
 
 " All of your Plugins must be added before the following line
 call plug#end()            " required
@@ -47,6 +48,7 @@ autocmd VimEnter *
 
 " --------------------------- Plug-config Begin ---------------------------
 
+source $HOME/.config/nvim/plug-config/coc.vim
 source $HOME/.config/nvim/plug-config/airline.vim
 source $HOME/.config/nvim/plug-config/markdown-preview.vim
 
@@ -61,9 +63,14 @@ source $HOME/.config/nvim/plug-config/markdown-preview.vim
 " show number line
 set number
 set encoding=UTF-8
+au BufWinLeave * mkview
+au BufWinEnter * silent! loadview
 
 " g Leader key
 let mapleader=" "
+
+" Markdown Preview
+let g:livepreview_previewer = 'zathura'
 
 " Always show statusline
 set laststatus=2
@@ -71,13 +78,14 @@ set smartindent
 set incsearch
 set hlsearch
 set wildmenu
+set foldmethod=marker
 set path+=**
 set confirm
 
 " Maps
-map q :bw<CR>
-map <Tab> :bn<CR>
-map <C-f> :FZF -e<CR>
+map <leader>q :bw<CR>
+map <leader><Tab> :bn<CR>
+map <leader>f :FZF -e<CR>
 map <leader>sc :!clear && shellcheck %<CR>
 map <leader>rf :!clear && ./%<CR>
 map <leader>nl :%s/^/\=printf('%03d', line('.'))<CR>
@@ -87,7 +95,7 @@ map <leader>t :!tmux split-window -v -p 20<CR>
 vmap <C-c> :!xclip -f -sel clip<CR>
 
 " Theme
-colorscheme darkgreen
+colorscheme gruvbox
 hi Normal ctermbg=none
 
 " ----------------------------- Settings End -----------------------------
