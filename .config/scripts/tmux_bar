@@ -8,8 +8,8 @@ Update=$(apt list --upgradable | sed '/\//!d' | wc -l)
 }
 
 tmux_bar_inst(){
-# {{{ #### Qbittorrent
-Torrent=$(~/.config/scripts/qbit.py \
+# {{{ #### qBittorrent
+Torrent=$($HOME/.config/scripts/qbit \
 	| sort \
 	| uniq -c \
 	| sed 's/^ *//' \
@@ -22,7 +22,7 @@ Torrent=$(~/.config/scripts/qbit.py \
 		s/(.*) metaDL.*/#[fg=colour6] \1⌛️/g
 		s/.*stalledDL (.*)/#[fg=colour5] ⌛️[\1%]/g
 		s/.*downloading (.*)/#[fg=colour5] 📥[\1%]/g
-		s/.*moving (.*)/#[fg=colour6] 🗂[\1%]/g
+		s/.*moving (.*)/#[fg=colour6] 🗂 [\1%]/g
 		s/.*checkingDL (.*)/#[fg=colour11] ⌛️[\1%]/g
 		s/.*checkingUP (.*)/#[fg=colour11] ⌛️[\1%]/g' \
 	| sed ':a;$!N;s/\n//;ta;' \
