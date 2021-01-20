@@ -19,21 +19,21 @@ call plug#begin('~/.config/nvim/plugged')
 
 	" ==== Themes
 	Plug 'morhetz/gruvbox' " Gruvbox Theme
+	Plug 'ryanoasis/vim-devicons'
 	Plug 'vim-airline/vim-airline'		" Airline
 	Plug 'vim-airline/vim-airline-themes'	" Airline Themes
-	Plug 'ryanoasis/vim-devicons'
 
 	" ==== Syntax
 	Plug 'sheerun/vim-polyglot'
-	Plug 'neoclide/coc.nvim', {'branch': 'release'}
-	Plug 'ntpeters/vim-better-whitespace'
 	Plug 'preservim/nerdcommenter'
+	Plug 'ntpeters/vim-better-whitespace'
+	Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 	" ==== Utility
 	Plug 'junegunn/fzf'
 	Plug 'junegunn/fzf.vim'
-	Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & npm install'  }
 	Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
+	Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & npm install'  }
 
 " All of your Plugins must be added before the following line
 call plug#end()            " required
@@ -70,14 +70,14 @@ au BufWinLeave * mkview
 au BufWinEnter * silent! loadview
 
 " Always show statusline
-set laststatus=2
-set smartindent
-set incsearch
-set hlsearch
-set wildmenu
-set foldmethod=marker
 set path+=**
 set confirm
+set hlsearch
+set wildmenu
+set incsearch
+set smartindent
+set laststatus=2
+set foldmethod=marker
 
 " Leader key
 let mapleader="\<space>"
