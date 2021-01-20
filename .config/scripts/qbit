@@ -1,0 +1,29 @@
+#!/usr/bin/env python3
+
+from qbittorrent import Client
+import argparse
+
+qb = Client('http://localhost:7777/')
+# qb.login(usuario:senha)
+qb.login()
+
+
+def get_status():
+    # Pegar informações da lista de torrent.
+    torrents = qb.torrents()
+    for torrent in torrents:
+        progress = int(torrent['progress'] * 100)
+        state = torrent['state']
+        print(state, progress)
+
+
+def add_torrent():
+    # Baixar Torrent com link sendo passado com o script.
+    parser = argparse.ArgumentParser()
+    parser.add_argument('magnet', type=str, nargs='?')
+    arg = parser.parse_args()
+    qb.download_from_link(arg.magnet)
+
+
+add_torrent()
+get_status()
