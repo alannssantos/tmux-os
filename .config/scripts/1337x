@@ -7,7 +7,7 @@
 # /_/   \_\_|\__,_|_| |_|_| |_|
 
 # Varialvel de Client Torrent.
-Programa="qbittorrent --skip-dialog=true --sequential"
+Programa="$HOME/.config/scripts/qbit"
 
 # O site que vai ser usado.
 Site="https://1337x.to"
@@ -26,7 +26,7 @@ fi
 Resultados=$(wget -qO- "$Site/$Url" \
 	| sed -r '/<td class=\"coll-[0-4]/!d
 		s/^.*leeches">(.*)<.*$/\1/
-		s/^.*mob-[a-z]*">(.*)<span.*$/\1/
+		s/^.*mob-[a-z].*">(.*)<span.*$/\1/
 		s/^.*seeds">(.*)<.*$/\1/
 		s/^.*href=\"(\/torrent.*)\">(.*)<\/a>.*$/\2┃\1/' \
 	| sed  'N;N;N;s!\n!┃!g' \
