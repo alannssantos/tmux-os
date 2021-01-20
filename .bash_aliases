@@ -1,12 +1,12 @@
 #### Variaveis.
-RCor="\[\033[1;31m\]"   # Red (Vermelho)
-GCor="\[\033[1;32m\]"   # Green (Verde)
-YCor="\[\033[1;33m\]"   # Yellow (Amarelo)
-BCor="\[\033[1;34m\]"   # Blue (Azul)
-PCor="\[\033[1;35m\]"   # Purple (Roxo)
-CCor="\[\033[1;36m\]"   # Cyan (Turquesa)
-WCor="\[\033[1;37m\]"   # White (Branco)
-ECor="\[\033[0m\]"      # End (Fim)
+RCor="\[\033[1;31m\]"	# Red (Vermelho)
+GCor="\[\033[1;32m\]"	# Green (Verde)
+YCor="\[\033[1;33m\]"	# Yellow (Amarelo)
+BCor="\[\033[1;34m\]"	# Blue (Azul)
+PCor="\[\033[1;35m\]"	# Purple (Roxo)
+CCor="\[\033[1;36m\]"	# Cyan (Turquesa)
+WCor="\[\033[1;37m\]"	# White (Branco)
+ECor="\[\033[0m\]"	# End (Fim)
 
 EDITOR="nvim"
 
@@ -22,18 +22,18 @@ gitR() { git status 2>&1 | tee | sed '/renamed:/!d' | sed '$=' | sed '/\t/d;s/^/
 export PS1="\\n$RCor[$WCor\A$RCor] $GCor\u$YCor@$BCor\h $GCor\w$ECor\\n$YCor\$(gitB)$CCor\$(gitH)$RCor\$(gitD)$GCor\$(gitN)$CCor\$(gitR)$YCor\$(gitU)$CCor\$(gitM)$ECor $PCor$ $ECor"
 export PS2=" $GCor>$ECor "
 
-#### Aliases
+#### Aliases.
 alias mv='mv -iv'
 alias cp='cp -riv'
-alias mkdir='mkdir -vp'
 alias mp='ncmpcpp'
-alias qbit='qbittorrentui -c ~/.config/qBittorrent/default.ini'
 alias cat='bat --theme zenburn -p --paging=never'
+alias ytmp='mpsyt /'
+alias lynx='lynx -accept_all_cookies -image_links'
+alias mkdir='mkdir -vp'
 alias yta-mp3='youtube-dl -c --extract-audio --audio-format mp3 -o "%(playlist_index)s-%(title)s.%(ext)s" --add-metadata'
 alias ytv-best='youtube-dl -c --add-metadata -f bestvideo+bestaudio -o "%(title)s.%(ext)s"'
-alias ytmp='mpsyt /'
 alias streamlink='streamlink -p "mpv --cache 2048 --ontop --no-border --force-window --autofit=500x280 --geometry=-15-60"'
-alias lynx='lynx -accept_all_cookies -image_links'
+alias qbittorrentui='qbittorrentui -c ~/.config/qBittorrent/default.ini'
 
 #### Funções.
 finder() { ranger --selectfile="$(fzf -e --color=16 --border | xargs -r -0)" ;}
@@ -57,7 +57,7 @@ export LESS_TERMCAP_us=$'\e[1;4;31m'
 #### Mostrar arquivos ocultos com FZF e abri com o aplcativo padrão pra determinado arquivo.
 export FZF_DEFAULT_COMMAND='find /home /media /mnt'
 
-bind '"\C-X":"tmux attach || tmux\n"'
 bind '"\C-G":"$(fzf -e)\n"'
+bind '"\C-X":"tmux a || tmux\n"'
 
 debfetch
