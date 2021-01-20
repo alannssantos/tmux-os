@@ -52,6 +52,9 @@ source $HOME/.config/nvim/plug-config/coc.vim
 source $HOME/.config/nvim/plug-config/airline.vim
 source $HOME/.config/nvim/plug-config/markdown-preview.vim
 
+" Vim-latex-live-preview
+let g:livepreview_previewer = 'zathura'
+
 " --------------------------- Plug-config End -----------------------------
 
 " --------------------------------------------------------------------------
@@ -66,12 +69,6 @@ set encoding=UTF-8
 au BufWinLeave * mkview
 au BufWinEnter * silent! loadview
 
-" g Leader key
-let mapleader=" "
-
-" Markdown Preview
-let g:livepreview_previewer = 'zathura'
-
 " Always show statusline
 set laststatus=2
 set smartindent
@@ -82,14 +79,16 @@ set foldmethod=marker
 set path+=**
 set confirm
 
+" Leader key
+let mapleader="\<space>"
+
 " Maps
 map <leader>q :bw<CR>
-map <leader><Tab> :bn<CR>
 map <leader>f :FZF -e<CR>
-map <leader>sc :!clear && shellcheck %<CR>
-map <leader>rf :!clear && ./%<CR>
-map <leader>nl :%s/^/\=printf('%03d', line('.'))<CR>
+map <leader>s :!clear && shellcheck -x %<CR>
 map <leader>t :!tmux split-window -v -p 20<CR>
+map <leader>nl :%s/^/\=printf('%03d', line('.'))<CR>
+map <leader><Tab> :bn<CR>
 
 " Copiar e Colar X11
 vmap <C-c> :!xclip -f -sel clip<CR>
