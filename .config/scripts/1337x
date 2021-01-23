@@ -8,6 +8,7 @@
 
 # Varialvel de Client Torrent.
 Programa="$HOME/.config/scripts/qbit"
+#Programa="qbittorrent --skip-dialog=true --sequential"
 
 # O site que vai ser usado.
 Site="https://1337x.to"
@@ -17,13 +18,17 @@ Pesquisa="$*"
 
 # Definindo se vai pesquisar ou olhar o top 100.
 if [ -z "$Pesquisa" ] ; then
-	Url="top-100"
+	Url="$Site/top-100"
 else
-	Url='search/'"$Pesquisa"'/1/'
+	Url=("$Site"'/search/'"$Pesquisa"'/1/'
+		"$Site"'/search/'"$Pesquisa"'/2/'
+		"$Site"'/search/'"$Pesquisa"'/3/'
+		"$Site"'/search/'"$Pesquisa"'/4/'
+		"$Site"'/search/'"$Pesquisa"'/5/')
 fi
 
 # A magica.
-Resultados=$(wget -qO- "$Site/$Url" \
+Resultados=$(wget -qO- "${Url[@]}" \
 	| sed -r '/<td class=\"coll-[0-4]/!d
 		s/^.*leeches">(.*)<.*$/\1/
 		s/^.*mob-[a-z].*">(.*)<span.*$/\1/
@@ -39,6 +44,7 @@ if [ ! -z "$Resultados" ]; then
 	for Resultado in $Resultados
 		do
 		$Programa "$(wget -qO- "$Site$Resultado" \
-			| sed -r '/Magnet Download/!d;s/^.*href=\"(.*)\".*$/\1/')"
+			| sed -r '/Magnet Download/!d
+					s/^.*href=\"(.*)\".*$/\1/')"
 		done
 fi
