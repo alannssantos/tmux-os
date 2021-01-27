@@ -7,7 +7,7 @@
 # /_/   \_\_|\__,_|_| |_|_| |_|
 
 # Varialvel de Client Torrent.
-Programa="$HOME/.config/scripts/qbit"
+Programa="transmission-remote -a"
 #Programa="qbittorrent --skip-dialog=true --sequential"
 
 # O site que vai ser usado.
