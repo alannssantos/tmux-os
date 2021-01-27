@@ -1,5 +1,5 @@
 tasks:
-# Remove torrent depois de Upar o dobro!
+  # Remove torrent depois de Upar o dobro!
   clean-transmission:
     disable: [seen, seen_info_hash]
     accept_all: yes
@@ -9,7 +9,7 @@ tasks:
       - transmission_ratio < 1.0: reject
     transmission:
       action: remove
-# RSS
+  # RSS
   Mangas:
     sequence:
       - rss: https://mangadex.org/rss/gvKM3hsdH9pe6AwZC8RQqarbNnutykYX/manga_id/22151
@@ -26,53 +26,53 @@ tasks:
       - rss: https://mangadex.org/rss/gvKM3hsdH9pe6AwZC8RQqarbNnutykYX/manga_id/24249
     accept_all: yes
     exec: echo " | $(date '+%d/%m/%Y %H:%M:%S') | {{title}} | {{url}} |" >> ~/Update\ Mangas\ History.md ; gallery-dl {{url}} &
-#  Animes:
-#    sequence:
-#      - rss: https://nyaa.si/?page=rss&q=The+God+of+High+School&c=1_2&f=2
-#    regexp:
-#      accept:
-#        - (\[HorribleSubs\]|\[720p\]).*(\[HorribleSubs\]|\[720p\])
-#    transmission:
-#      host: localhost
-#      port: 9091
-#      username: ""
-#      password: ""
-#      path: "/media/Stronger/Emby/Animes/The God of High School"
-#  Filmes:
-#    sequence:
-#      - rss: https://yts.mx/rss/F9/all/all/0/en
-#      - rss: https://yts.mx/rss/black%20widow/all/all/0/en
-#      - rss: https://yts.mx/rss/Wonder%20Woman%201984/all/all/0/en
-#      - rss: https://yts.mx/rss/Tenet/all/all/0/en
-#      - rss: https://yts.mx/rss/Dune/all/all/0/en
-#      - rss: https://yts.mx/rss/A%20Quiet%20Place/all/all/0/en
-#    regexp:
-#      accept:
-#        - (BluRay|WEB|1080p).*(BluRay|WEB|1080p)
-#      reject:
-#        - (3D|720p)
-#    transmission:
-#      host: localhost
-#      port: 9091
-#      username: ""
-#      password: ""
-#      path: /media/Stronger/Emby/Filmes
-#  Series:
-#    sequence:
-#      - rss: https://showrss.info/show/651.rss
-#      - rss: https://showrss.info/show/1296.rss
-#      - rss: https://showrss.info/show/1283.rss
-#      - rss: https://showrss.info/show/1338.rss
-#      - rss: https://showrss.info/show/1183.rss
-#      - rss: https://showrss.info/show/1359.rss
-#    regexp:
-#      accept:
-#        - (1080p)
-#      reject:
-#        - (Repack|PROPER)
-#    transmission:
-#      host: localhost
-#      port: 9091
-#      username: ""
-#      password: ""
-#      path: /media/Stronger/Emby/Series
+  Animes:
+    sequence:
+      - rss: https://nyaa.si/?page=rss&q=The+God+of+High+School&c=1_2&f=2
+    regexp:
+      accept:
+        - (\[HorribleSubs\]|\[720p\]).*(\[HorribleSubs\]|\[720p\])
+    transmission:
+      host: localhost
+      port: 9091
+      username: ""
+      password: ""
+      path: "/media/Stronger/Emby/Animes/The God of High School"
+  Filmes:
+    sequence:
+      - rss: https://yts.mx/rss/F9/all/all/0/en
+      - rss: https://yts.mx/rss/black%20widow/all/all/0/en
+      - rss: https://yts.mx/rss/Wonder%20Woman%201984/all/all/0/en
+      - rss: https://yts.mx/rss/Tenet/all/all/0/en
+      - rss: https://yts.mx/rss/Dune/all/all/0/en
+      - rss: https://yts.mx/rss/A%20Quiet%20Place/all/all/0/en
+    regexp:
+      accept:
+        - (BluRay|WEB|1080p).*(BluRay|WEB|1080p)
+      reject:
+        - (3D|720p)
+    transmission:
+      host: localhost
+      port: 9091
+      username: ""
+      password: ""
+      path: /media/Stronger/Emby/Filmes
+  Series:
+    sequence:
+      - rss: https://showrss.info/show/651.rss
+      - rss: https://showrss.info/show/1296.rss
+      - rss: https://showrss.info/show/1283.rss
+      - rss: https://showrss.info/show/1338.rss
+      - rss: https://showrss.info/show/1183.rss
+      - rss: https://showrss.info/show/1359.rss
+    regexp:
+      accept:
+        - (1080p)
+      reject:
+        - (Repack|PROPER)
+    transmission:
+      host: localhost
+      port: 9091
+      username: ""
+      password: ""
+      path: /media/Stronger/Emby/Series
