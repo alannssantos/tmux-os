@@ -11,14 +11,14 @@ tmux_bar_inst(){
 # {{{ #### Transmission
 Torrent=$(transmission-remote -l \
 	| sed -r '/%|Unknown/!d
-	s/.*Verifying.*/⌛️/
-	s/.*Seeding.*/🌱/
-	s/.*Stopped.*/🔴/
-	s/.*100%.*/✅/
-	s/.*Idle.*/⌛️/
-	s/.*Unknown.*/❗/
-	s/.*Uploading.*/📤/
-	s/ .* (.*%).*Downloading.*/📥[\1]/' \
+		s/.*Verifying.*/⌛️/
+		s/.*Seeding.*/🌱/
+		s/.*Stopped.*/🔴/
+		s/.*100%.*/✅/
+		s/.*Idle.*/⌛️/
+		s/.*Unknown.*/❗/
+		s/.*Uploading.*/📤/
+		s/ .* (.*%).*Downloading.*/📥[\1]/' \
 	| sort \
 	| uniq -c \
 	| sed -r 's/ //g
