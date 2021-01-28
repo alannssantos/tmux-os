@@ -42,8 +42,8 @@ NManga=$(grep -c "$Date" "$File")
 #### ━━━━━━━━━━━━ # }}}
 # {{{ #### Mpc Player
 Player=$(mpc -f "[[%artist% ┃ ]%title%]|[%file$]" 2>/dev/null \
-	| grep -v 'volume:' \
-	| sed -r '1!d;s/(.* )┃( .*)/ #[fg=colour71]┃ 🎵 \1-#[fg=colour5]\2/')
+	| sed -r '/^volume:|^\[playing\]|^\[paused\]/d
+		s/(.* )┃( .*)/ #[fg=colour71]┃ 🎵 \1-#[fg=colour5]\2/')
 echo -n "$Player"
 #### ━━━━━━━━━━ # }}}
 # {{{ #### Temperatura CPU
