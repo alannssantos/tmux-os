@@ -8,23 +8,27 @@ Update=$(apt list --upgradable | sed '/\//!d' | wc -l)
 }
 
 tmux_bar_inst(){
-# {{{ #### qBittorrent
-Torrent=$($HOME/.config/scripts/qbit \
+# {{{ #### Transmission
+Torrent=$(transmission-remote -l \
+	| sed -r '/%|Unknown/!d
+	s/.*Verifying.*/⌛️/
+	s/.*Seeding.*/🌱/
+	s/.*Stopped.*/🔴/
+	s/.*100%.*/✅/
+	s/.*Idle.*/⌛️/
+	s/.*Unknown.*/❗/
+	s/.*Uploading.*/📤/
+	s/ .* (.*%).*Downloading.*/📥[\1]/' \
 	| sort \
 	| uniq -c \
-	| sed 's/^ *//' \
-	| sed -r 's/(.*) pausedDL.*/#[fg=colour1] \1🔴/g
-		s/(.*) missingFiles.*/#[fg=colour1] \1❗/g
-		s/(.*) pausedUP.*/#[fg=colour4] \1✅/g
-		s/(.*) stalledUP.*/#[fg=colour71] \1🌱/g
-		s/(.*) uploading.*/#[fg=colour71] \1📤/g
-		s/(.*) queuedUP.*/#[fg=colour11] \1📎/g
-		s/(.*) metaDL.*/#[fg=colour6] \1⌛️/g
-		s/.*stalledDL (.*)/#[fg=colour5] ⌛️[\1%]/g
-		s/.*downloading (.*)/#[fg=colour5] 📥[\1%]/g
-		s/.*moving (.*)/#[fg=colour6] 🗂 [\1%]/g
-		s/.*checkingDL (.*)/#[fg=colour11] ⌛️[\1%]/g
-		s/.*checkingUP (.*)/#[fg=colour11] ⌛️[\1%]/g' \
+	| sed -r 's/ //g
+		s/(.*🔴.*)/#[fg=colour1] \1/
+		s/(.*❗.*)/#[fg=colour5] \1/
+		s/(.*⌛️.*)/#[fg=colour11] \1/
+		s/(.*🌱.*)/#[fg=colour71] \1/
+		s/(.*✅.*)/#[fg=colour71] \1/
+		s/(.*📤.*)/#[fg=colour71] \1/
+		s/.*(📥.*$)/#[fg=colour5] \1/' \
 	| sed ':a;$!N;s/\n//;ta;' \
 	| sed 's/^/ #[fg=colour71]┃/')
 echo -n "$Torrent"
