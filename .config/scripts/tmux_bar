@@ -28,7 +28,7 @@ Torrent=$(transmission-remote -l \
 		s/(.*🌱.*)/#[fg=colour71] \1/
 		s/(.*✅.*)/#[fg=colour71] \1/
 		s/(.*📤.*)/#[fg=colour71] \1/
-		s/.*(📥.*$)/#[fg=colour5] \1/' \
+		s/.*(📥.*$)/#[fg=colour4] \1/' \
 	| sed ':a;$!N;s/\n//;ta;' \
 	| sed 's/^/ #[fg=colour71]┃/')
 echo -n "$Torrent"
