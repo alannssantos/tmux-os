@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+# Quando o transmission terminar um torrent ele vai enviar um email.
+
+echo "Olá, Alann.
+Seu Torrent acabou de baixar.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━►
+$TR_TORRENT_NAME
+$(date '+%d/%m/%Y %H:%M:%S')
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━►" | neomutt -s "Transmission" alannssantos@gmail.com
