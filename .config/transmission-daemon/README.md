@@ -25,6 +25,6 @@ ExecReload=/bin/kill -s HUP $MAINPID
 WantedBy=multi-user.target
 ```
 
-- Arquivo padrão fica `/etc/transmission-daemon/settings.json`.
-- Definir destino de Downloads padrão e outros detalhes (Arquivo exemplo).
+- Arquivo padrão fica `~/.config/transmission-daemon/settings.json`.
+- Definir destino de downloads padrão e caminho do script pois downloads (Caminho absoluto).
 - Iniciar Transmission `$ sudo service transmission-daemon start`.
