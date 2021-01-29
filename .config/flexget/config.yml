@@ -12,18 +12,18 @@ tasks:
   # RSS
   Mangas:
     sequence:
-      - rss: https://mangadex.org/rss/gvKM3hsdH9pe6AwZC8RQqarbNnutykYX/manga_id/22151
-      - rss: https://mangadex.org/rss/gvKM3hsdH9pe6AwZC8RQqarbNnutykYX/manga_id/22631
-      - rss: https://mangadex.org/rss/gvKM3hsdH9pe6AwZC8RQqarbNnutykYX/manga_id/17910
-      - rss: https://mangadex.org/rss/gvKM3hsdH9pe6AwZC8RQqarbNnutykYX/manga_id/12714
-      - rss: https://mangadex.org/rss/gvKM3hsdH9pe6AwZC8RQqarbNnutykYX/manga_id/35439
-      - rss: https://mangadex.org/rss/gvKM3hsdH9pe6AwZC8RQqarbNnutykYX/manga_id/16411
-      - rss: https://mangadex.org/rss/gvKM3hsdH9pe6AwZC8RQqarbNnutykYX/manga_id/16588
-      - rss: https://mangadex.org/rss/gvKM3hsdH9pe6AwZC8RQqarbNnutykYX/manga_id/21048
-      - rss: https://mangadex.org/rss/gvKM3hsdH9pe6AwZC8RQqarbNnutykYX/manga_id/15016
-      - rss: https://mangadex.org/rss/gvKM3hsdH9pe6AwZC8RQqarbNnutykYX/manga_id/21040
-      - rss: https://mangadex.org/rss/gvKM3hsdH9pe6AwZC8RQqarbNnutykYX/manga_id/32386
-      - rss: https://mangadex.org/rss/gvKM3hsdH9pe6AwZC8RQqarbNnutykYX/manga_id/24249
+      - rss: https://mangadex.org/rss/gvKM3hsdH9pe6AwZC8RQqarbNnutykYX/manga_id/22151 #Kanojo, Okarishimasu
+      - rss: https://mangadex.org/rss/gvKM3hsdH9pe6AwZC8RQqarbNnutykYX/manga_id/22631 #Ijiranaide, Nagatoro-san
+      - rss: https://mangadex.org/rss/gvKM3hsdH9pe6AwZC8RQqarbNnutykYX/manga_id/17910 #Kawaii Joushi wo Komarasetai
+      - rss: https://mangadex.org/rss/gvKM3hsdH9pe6AwZC8RQqarbNnutykYX/manga_id/12714 #Boku no Hero Academia
+      - rss: https://mangadex.org/rss/gvKM3hsdH9pe6AwZC8RQqarbNnutykYX/manga_id/35439 #1/10 no Hanayome
+      - rss: https://mangadex.org/rss/gvKM3hsdH9pe6AwZC8RQqarbNnutykYX/manga_id/16411 #Enen no Shouboutai
+      - rss: https://mangadex.org/rss/gvKM3hsdH9pe6AwZC8RQqarbNnutykYX/manga_id/16588 #Gleipnir
+      - rss: https://mangadex.org/rss/gvKM3hsdH9pe6AwZC8RQqarbNnutykYX/manga_id/21048 #Jagaaaaaan
+      - rss: https://mangadex.org/rss/gvKM3hsdH9pe6AwZC8RQqarbNnutykYX/manga_id/15016 #Black Clover
+      - rss: https://mangadex.org/rss/gvKM3hsdH9pe6AwZC8RQqarbNnutykYX/manga_id/21040 #Parallel Paradise
+      - rss: https://mangadex.org/rss/gvKM3hsdH9pe6AwZC8RQqarbNnutykYX/manga_id/32386 #Mato Seihei no Slave
+      - rss: https://mangadex.org/rss/gvKM3hsdH9pe6AwZC8RQqarbNnutykYX/manga_id/24249 #A Story About Treating a Female Knight, Who Has Never Been Treated as a Woman, as a Woman
     accept_all: yes
     exec: echo " | $(date '+%d/%m/%Y %H:%M:%S') | {{title}} | {{url}} |" >> ~/Update\ Mangas\ History.md ; gallery-dl {{url}} &
   Animes:
@@ -42,10 +42,13 @@ tasks:
     sequence:
       - rss: https://yts.mx/rss/F9/all/all/0/en
       - rss: https://yts.mx/rss/black%20widow/all/all/0/en
-      - rss: https://yts.mx/rss/Wonder%20Woman%201984/all/all/0/en
-      - rss: https://yts.mx/rss/Tenet/all/all/0/en
       - rss: https://yts.mx/rss/Dune/all/all/0/en
       - rss: https://yts.mx/rss/A%20Quiet%20Place/all/all/0/en
+      - rss: https://yts.mx/rss/Venom:%20Let%20There%20Be%20Carnage/all/all/0/en
+      - rss: https://yts.mx/rss/The%20Little%20Things/all/all/0/en
+      - rss: https://yts.mx/rss/Raya%20and%20The%20Last%20Dragon/all/all/0/en
+      - rss: https://yts.mx/rss/Morbius/all/all/0/en
+      - rss: https://yts.mx/rss/Chaos%20Walking/all/all/0/en
     regexp:
       accept:
         - (BluRay|WEB|1080p).*(BluRay|WEB|1080p)
@@ -59,12 +62,14 @@ tasks:
       path: /media/Stronger/Emby/Filmes
   Series:
     sequence:
-      - rss: https://showrss.info/show/651.rss
-      - rss: https://showrss.info/show/1296.rss
-      - rss: https://showrss.info/show/1283.rss
-      - rss: https://showrss.info/show/1338.rss
-      - rss: https://showrss.info/show/1183.rss
-      - rss: https://showrss.info/show/1359.rss
+      - rss: https://showrss.info/show/651.rss #Westworld
+      - rss: https://showrss.info/show/1296.rss #Motherland: Fort Salem
+      - rss: https://showrss.info/show/1283.rss #For Life
+      - rss: https://showrss.info/show/1338.rss #Lovecraft Country
+      - rss: https://showrss.info/show/1183.rss #The Boys
+      - rss: https://showrss.info/show/810.rss #American Gods
+      - rss: https://showrss.info/show/1193.rss #Carnival Row
+      - rss: https://showrss.info/show/1388.rss #WandaVision
     regexp:
       accept:
         - (1080p)
